@@ -8,58 +8,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
-    
-    <!-- TODO: Add the responsive 'viewport' meta tag. -->
-
-    <!-- TODO: Add a title, e.g., "Web Dev Course Homepage". -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Dev Course Homepage</title>
 
     <!-- TODO: Link to your CSS framework or stylesheet. -->
+     <link rel="stylesheet" href="style.css">
+     
 </head>
 <body>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') like "Welcome to the Web Development Course". -->
-
-    <!-- TODO: Create the 'main' content area. -->
-
-        <!-- TODO: Create a 'nav' element to hold the site navigation. -->
-            <!-- TODO: Add a sub-heading ('h2') "Site Navigation". -->
-
-            <!-- TODO: Create an unordered list ('ul') to hold the links. -->
-
-                <!-- Section: General -->
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Login page.
-                     - Text: "Login" -->
-
-                <!-- Section: Admin Pages -->
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Admin Portal.
-                     - Text: "Admin Portal (Manage Students)" -->
-                
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Admin Resources page.
-                     - Text: "Admin: Manage Resources" -->
-
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Admin Weekly Breakdown page.
-                     - Text: "Admin: Manage Weekly Breakdown" -->
-
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Admin Assignments page.
-                     - Text: "Admin: Manage Assignments" -->
-
-                <!-- Section: Student Pages -->
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Student Resources page.
-                     - Text: "View Course Resources" -->
-
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Student Weekly Breakdown page.
-                     - Text: "View Weekly Breakdown" -->
-
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Student Assignments page.
-                     - Text: "View Assignments" -->
-              
-                <!-- TODO: Add a list item ('li') with a link ('a') to the Discussion Board.
-                     - Text: "General Discussion Board" -->
-
-            <!-- End of the unordered list. -->
+     <header>
+     <h1>Welcome to Web Development Course</h1>
+    </header>
+     <main>
+         <nav>
+              <h2>Site Navigation</h2>              
+              <ul>
+                   <!-- Section: General -->
+                   
+                   <li> <a href="/src/auth/login.html">Login page</a></li>
+                   <!-- Section: Admin Pages -->
+                   <li><a href="src/admin/manage_users.html">Admin portal (Manage Students)</a></li>
+                   <li><a href="src/resources/admin.html">Admin: Manage Resources</a></li>
+                   <li><a href="src/weekly/admin.html">Admin: Manage Weekly Breakdown</a></li>
+                   <li><a href="src/assignments/admin.html">Admin: Manage Assignments</a></li>                   
+                   <!-- Section: Student Pages -->
+                   <li><a href="src/resources/list.html">View Course Resources</a></li>
+                   <li><a href="src/weekly/list.html">View Weekly Breakdown</a></li>
+                   <li><a href="src/assignments/list.html">View Assignments</a></li>
+                   <li><a href="src/discussion/baord.html">General Discussion Board</a></li>                   
+                   <!-- End of the unordered list. -->
+               </ul>
         <!-- End of the 'nav' element. -->
-
+          </nav>
     <!-- End of 'main'. -->
+     </main>
 </body>
 </html>
