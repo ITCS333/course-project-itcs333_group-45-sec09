@@ -9,122 +9,140 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Portal</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <h1>Admin Portal</h1>
-        </header>
-        <main>
-            <!-- Section 1: Password Management -->
-            <section class="password-management">
-                <h2>Change Your Password</h2>
-                <!-- TODO: Create a 'form' for changing the password. The 'action' can be '#'. -->
-                <form action="#" method="post">
 
-                    <fieldset>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-                        <legend>Password Update</legend>
+<body>
+    <header>
+        <h1>Admin Portal</h1>
+    </header>
+    <main>
+        <!-- Section 1: Password Management -->
+        <section class="password_management">
+            <h2>Change Your Password</h2>
+            <!-- TODO: Create a 'form' for changing the password. The 'action' can be '#'. -->
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Password Update</legend>
 
-                        <label for="current-password">Current Password</label>
-                        <input type="password" id="current-password"
-                            required><br>
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" required><br>
 
-                        <label for="new-password">New Password</label>
-                        <input type="password" id="new-password" minlength="8"
-                            required><br>
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" minlength="8" required><br>
 
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password"
-                            required><br>
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required><br>
 
-                        <button type="submit" id="change">Update
-                            Password</button>
-                        <!-- End of the fieldset. -->
-                    </fieldset>
-                    <!-- End of the password form. -->
-                </form>
-                <!-- End of the password management section. -->
-            </section>
 
-            <!-- Section 2: Student Management -->
-            <!-- TODO: Create another 'section' for the student management functionality. -->
-            <!-- TODO: Add a sub-heading (e.g., 'h2') with the text "Manage Students". -->
+                    <button type="submit" id="change">Update Password</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- Section 2: Student Management -->
+        <section class="student_management">
+            <h2>Management Students</h2>
 
             <!-- Subsection 2.1: Add New Student Form -->
-            <!-- TODO: Create a 'details' element so the "Add Student" form can be collapsed. -->
-            <!-- TODO: Add a 'summary' element inside 'details' with the text "Add New Student". -->
+            <details>
 
-            <!-- TODO: Create a 'form' for adding a new student. 'action' can be '#'. -->
-            <!-- TODO: Use a 'fieldset' to group the new student fields. -->
-            <!-- TODO: Add a 'legend' for the fieldset, e.g., "New Student Information". -->
+                <summary>Add New Student</summary>
+                <!-- TODO: Create a 'form' for adding a new student. 'action' can be '#'. -->
+                <form action="#" method="post">
+                    <fieldset>
+                        <legend>New Student Information</legend>
 
-            <!-- TODO: Add a 'label' and 'input' for the student's full name.
-                             - label 'for': "student-name"
-                             - input 'id': "student-name"
-                             - input 'type': "text"
-                             - input: required -->
 
-            <!-- TODO: Add a 'label' and 'input' for the student's ID.
-                             - label 'for': "student-id"
-                             - input 'id': "student-id"
-                             - input 'type': "text"
-                             - input: required -->
+                        <label for="student-name">Student Name</label>
+                        <input id="student-name" type="text" required> <br>
 
-            <!-- TODO: Add a 'label' and 'input' for the student's email.
-                             - label 'for': "student-email"
-                             - input 'id': "student-email"
-                             - input 'type': "email"
-                             - input: required -->
 
-            <!-- TODO: Add a 'label' and 'input' for the default password.
-                             - label 'for': "default-password"
-                             - input 'id': "default-password"
-                             - input 'type': "text"
-                             - You can pre-fill this with a value like "password123" or leave it blank. -->
+                        <label for="student-id">Student ID</label>
+                        <input id="student-id" type="text" required><br>
 
-            <!-- TODO: Add a 'button' to submit the form.
-                             - type="submit"
-                             - id="add"
-                             - Text: "Add Student" -->
 
-            <!-- End of the fieldset. -->
-            <!-- End of the add student form. -->
-            <!-- End of the 'details' element. -->
+                        <label for="student-email">Student Email</label>
+                        <input id="student-email" type="email" required><br>
+
+
+                        <label for="default-password">Default Password</label>
+                        <input id="default-password" type="text" value="password123"><br>
+
+                        <button type="submit" id="add">Add Student</button>
+                    </fieldset>
+                </form>
+            </details>
+
 
             <!-- Subsection 2.2: Student List -->
             <!-- TODO: Add a sub-heading (e.g., 'h3') for the list of students, "Registered Students". -->
+            <h3>Registered Students</h3>
 
-            <!-- TODO: Create a 'table' to display the list of students. Give it an id="student-table". -->
-            <!-- TODO: Create a 'thead' for the table headers. -->
-            <!-- TODO: Create a 'tr' (table row) inside the 'thead'. -->
-            <!-- TODO: Create 'th' (table header) cells for "Name", "Student ID", "Email", and "Actions". -->
-            <!-- End of the row. -->
-            <!-- End of 'thead'. -->
 
-            <!-- TODO: Create a 'tbody' for the table body, where student data will go. -->
-            <!-- TODO: For now, add 2-3 rows of dummy data so you can see how the table is structured. -->
-            <!-- Example Student Row: -->
-            <!-- TODO: Create a 'tr' for a student record. -->
-            <!-- TODO: Create 'td' (table data) cells for a student's name (e.g., "John Doe"), ID (e.g., "12345"), and email (e.g., "john.doe@example.com"). -->
+            <table id="student-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-            <!-- TODO: Create a final 'td' for action buttons. -->
-            <!-- TODO: Add an "Edit" button. -->
-            <!-- TODO: Add a "Delete" button. -->
-            <!-- End of the actions 'td'. -->
-            <!-- End of the student row. -->
+                <tr>
+                    <td>Elias Abdulshaheed</td>
+                    <td>STU1001</td>
+                    <td>eliasabdulshaheed@gmail.com</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
 
-            <!-- TODO: Add another 'tr' for a second student as another example. -->
-            <!-- End of 'tbody'. -->
-            <!-- End of the table. -->
+                <tr>
+                    <td>Hussain Jasim</td>
+                    <td>STU1002</td>
+                    <td>hussainjasim@gmail.com</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
 
-            <!-- End of the student management section. -->
+                <tr>
+                    <td>Abdulrahman Khalid</td>
+                    <td>STU1003</td>
+                    <td>abdulrahmankhalid@gmail.com</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
 
-            <!-- End of the main content area. -->
+                <tr>
+                    <td>Hussain Jamil</td>
+                    <td>STU1004</td>
+                    <td>hussainjamil@gmail.com</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
 
-        </body>
-    </html>
+                </tbody>
+            </table>
+
+
+
+        <!-- End of the student management section. -->
+        </section>
+    <!-- End of the main content area. -->
+    </main>
+</body>
+</html>
