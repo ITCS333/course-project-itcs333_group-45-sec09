@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Portal</title>
     <link rel="stylesheet" href="style.css">
+    <script src="manage_users.js" defer></script>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         <section class="password_management">
             <h2>Change Your Password</h2>
             <!-- TODO: Create a 'form' for changing the password. The 'action' can be '#'. -->
-            <form action="#" method="post">
+            <form action="#" method="post" id="password-form">
                 <fieldset>
                     <legend>Password Update</legend>
 
@@ -54,7 +55,7 @@
 
                 <summary>Add New Student</summary>
                 <!-- TODO: Create a 'form' for adding a new student. 'action' can be '#'. -->
-                <form action="#" method="post">
+                <form action="#" method="post" id="add-student-form">
                     <fieldset>
                         <legend>New Student Information</legend>
 
@@ -84,7 +85,7 @@
             <!-- TODO: Add a sub-heading (e.g., 'h3') for the list of students, "Registered Students". -->
             <h3>Registered Students</h3>
 
-
+            <input type="text" id="search-input" placeholder="Search by student name...">
             <table id="student-table">
                 <thead>
                     <tr>
@@ -94,55 +95,56 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td>Elias Abdulshaheed</td>
+                        <td>STU1001</td>
+                        <td>eliasabdulshaheed@gmail.com</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>Elias Abdulshaheed</td>
-                    <td>STU1001</td>
-                    <td>eliasabdulshaheed@gmail.com</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>Hussain Jasim</td>
+                        <td>STU1002</td>
+                        <td>hussainjasim@gmail.com</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>Hussain Jasim</td>
-                    <td>STU1002</td>
-                    <td>hussainjasim@gmail.com</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>Abdulrahman Khalid</td>
+                        <td>STU1003</td>
+                        <td>abdulrahmankhalid@gmail.com</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>Abdulrahman Khalid</td>
-                    <td>STU1003</td>
-                    <td>abdulrahmankhalid@gmail.com</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Hussain Jamil</td>
-                    <td>STU1004</td>
-                    <td>hussainjamil@gmail.com</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>Hussain Jamil</td>
+                        <td>STU1004</td>
+                        <td>hussainjamil@gmail.com</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
 
 
 
-        <!-- End of the student management section. -->
+            <!-- End of the student management section. -->
         </section>
-    <!-- End of the main content area. -->
+        <!-- End of the main content area. -->
     </main>
 </body>
+
 </html>
