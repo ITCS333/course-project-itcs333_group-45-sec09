@@ -3,7 +3,7 @@
 # ITCS333 Course Page
 
 ## Name1: Elias Abdulshaheed A.ameer Abbas. ID1:202307585
-## Name2: Hussain Jassim mohamed ID2:202307311
+## Name2: Hussain Jassim Mohamed ID2:202307311
 ## Name3: Hussain Jameel Omran ID3:202308610
 ## Name4: Abdulrahman Khaled ID4:202308169
 
@@ -11,7 +11,8 @@
 | Student Name          | Task                 |
 |------------------------|---------------------------------|
 | Elias Abdulshaheed     | Task 1  |
-| Hussain Jameel Omran   | Task 2  |
+| Hussain Jassim Mohamed | Task 2  |
+| Hussain Jameel Omran   | Task 3  |
 | Abddularhman Khaled    | Task 4  |
 
 
