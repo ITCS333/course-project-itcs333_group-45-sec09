@@ -9,6 +9,7 @@
 | Student Name          | Task                 |
 |------------------------|---------------------------------|
 | Elias Abdulshaheed     | Task 1  |
+| Hussain Jameel Omran   | Task 2  |
 | Abddularhman Khaled    | Task 4  |
 
 
