@@ -96,6 +96,30 @@ function renderTable() {
  */
 function handleAddAssignment(event) {
   // ... your implementation here ...
+  event.preventDefault();
+
+  const title = document.getElementById('assignment-title').value;
+  const description = document.getElementById('assignment-description').value;
+  const dueDate = document.getElementById('assignment-due-date').value;
+  const files = document.getElementById('assignment-files').value;
+
+  const newAssignment = {
+    id: `asg_${Date.now()}`,
+    title: title,
+    description: description,
+    dueDate: dueDate,
+    files: files
+  }
+  assignments.push(newAssignment);
+
+  renderTable();
+
+  assignmentForm.reset();
+
+
+  }
+
+  
 }
 
 /**
