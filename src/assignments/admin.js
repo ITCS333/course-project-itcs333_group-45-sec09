@@ -156,6 +156,15 @@ function handleTableClick(event) {
  */
 async function loadAndInitialize() {
   // ... your implementation here ...
+  const response = await fetch('api/assignments.json');
+  const data = await response.json();
+  
+  assignments = data;
+
+  renderTable();
+
+  assignmentForm.addEventListener('submit', handleAddAssignment);
+  assignmentsTableBody.addEventListener('click', handleTableClick);
 }
 
 // --- Initial Page Load ---
