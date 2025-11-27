@@ -35,27 +35,39 @@
              <form id="assignment-form" action="#">
                 <!-- TODO: Use a 'fieldset' to group the form controls. -->
                  <fieldset>
-                    <legend>Assignment <Details></Details></legend>
                     <!-- TODO: Add a 'legend', e.g., "Assignment Details". -->
-
-                    <!-- TODO: Add a 'label' and 'input' for the assignment title.
+                     <legend>Assignment Details </legend>
+                     
+                    <!-- TODO: Add a 'label' and 'input' for the assignment title. 
                          - label 'for': "assignment-title"
                          - input 'id': "assignment-title", type="text", required -->
-
+                     <label for="assignment-title">Assignment Title:</label>
+                     <input type="text" id="assignment-title" required>
+   
+                    
                     <!-- TODO: Add a 'label' and 'textarea' for the description.
                          - label 'for': "assignment-description"
                          - textarea 'id': "assignment-description", rows="5", required -->
-
+                    <label for="assignment-description">Description:</label>
+                    <textarea id="assignment-description" rows="5" required></textarea>
+                    
                     <!-- TODO: Add a 'label' and 'input' for the due date.
                          - label 'for': "assignment-due-date"
                          - input 'id': "assignment-due-date", type="date", required -->
                     
+                    <label for="assignment-due-date">Due Date:</label>
+                    <input type="date" id="assignment-due-date" required>
+
                     <!-- TODO: Add a 'label' and 'textarea' for attached files or links (one per line).
                          - label 'for': "assignment-files"
                          - textarea 'id': "assignment-files", rows="3" -->
 
+                    <label for="assignment-files">Attached Files/Links (one per line):</label>
+                    <textarea id="assignment-files" rows="3"></textarea>
+
                     <!-- TODO: Add a 'button' to submit the form.
                          - id="add-assignment", type="submit", Text: "Add Assignment" -->
+                         
                 <!-- End of fieldset. -->
                  </fieldset>
             <!-- End of form. -->
