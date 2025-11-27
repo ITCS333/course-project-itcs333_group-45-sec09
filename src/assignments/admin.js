@@ -35,6 +35,34 @@ const assignmentsTableBody = document.getElementById('#assignments-tbody');
  */
 function createAssignmentRow(assignment) {
   // ... your implementation here ...
+  const tr = document.createElement('tr');
+
+  const titleCell = document.createElement('td');
+  titleCell.textContent = assignment.title;
+
+  const dueDateCell = document.createElement('td');
+  dueDateCell.textContent = assignment.dueDate;
+
+  const actionsCell = document.createElement('td'); 
+
+  const editBtn = document.createElement('button');
+  editBtn.textContent = 'Edit';
+  editBtn.className = 'edit-btn';
+  editBtn.setAttribute('data-id', assignment.id);
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.setAttribute('data-id', assignment.id);
+
+  actionsCell.appendChild(editBtn);
+  actionsCell.appendChild(deleteBtn);
+
+  tr.appendChild(titleCell);
+  tr.appendChild(dueDateCell);
+  tr.appendChild(actionsCell);
+
+  return tr;
 }
 
 /**
