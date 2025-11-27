@@ -12,7 +12,7 @@
     <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
      <meta charset="UTF-8">
     <!-- TODO: Add the responsive 'viewport' meta tag. -->
-     <meta name="viewport">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- TODO: Add a title, e.g., "Manage Assignments". -->
      <title>Manage Assignments</title>
     <!-- TODO: Link to your CSS framework or stylesheet. -->
@@ -20,14 +20,19 @@
 <body>
 
     <!-- TODO: Create a 'header' with a main heading ('h1') "Manage Assignments". -->
-
+     <header> 
+        <h1>Manage Assignments</h1>
+     </header>
     <!-- TODO: Create the 'main' content area. -->
-
+     <main>
         <!-- Section 1: Add/Edit Assignment Form -->
+        <section>
+            
         <!-- TODO: Create a 'section' for the form. -->
             <!-- TODO: Add a sub-heading ('h2') "Add a New Assignment". -->
-
+             <h2>Add a New Assignment</h2>
             <!-- TODO: Create a 'form' with an id "assignment-form". Action can be '#'. -->
+             <form id="assignment-form" action="#">
                 <!-- TODO: Use a 'fieldset' to group the form controls. -->
                     <!-- TODO: Add a 'legend', e.g., "Assignment Details". -->
 
@@ -51,8 +56,9 @@
                          - id="add-assignment", type="submit", Text: "Add Assignment" -->
                 <!-- End of fieldset. -->
             <!-- End of form. -->
+             </form>
         <!-- End of form section. -->
-
+         </section>
 
         <!-- Section 2: Existing Assignments List -->
         <!-- TODO: Create a 'section' to display the list of current assignments. -->
@@ -76,8 +82,9 @@
 
                 <!-- End of tbody. -->
             <!-- End of table. -->
+         
         <!-- End of list section. -->
-
+     </main>
     <!-- End of main. -->
 </body>
 </html>
