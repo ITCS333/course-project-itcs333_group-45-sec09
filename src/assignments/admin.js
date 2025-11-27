@@ -75,6 +75,12 @@ function createAssignmentRow(assignment) {
  */
 function renderTable() {
   // ... your implementation here ...
+  assignmentsTableBody.innerHTML ='';
+
+  for (let i =0;i<assignments.length;i++){
+    const row = createAssignmentRow(assignments[i]);
+    assignmentsTableBody.appendChild(row);
+  }
 }
 
 /**
