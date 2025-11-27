@@ -120,7 +120,7 @@ function handleAddAssignment(event) {
   }
 
   
-}
+
 
 /**
  * TODO: Implement the handleTableClick function.
@@ -134,6 +134,14 @@ function handleAddAssignment(event) {
  */
 function handleTableClick(event) {
   // ... your implementation here ...
+  if (event.target.classList.contains('delete-btn')){
+    const assignmentId = event.target.getAttribute('data-id');
+
+    assignments = assignments.filter(assignment => assignment.id !== assignmentId);
+
+    renderTable();
+
+  }
 }
 
 /**
