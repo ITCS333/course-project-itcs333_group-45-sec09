@@ -67,8 +67,8 @@
 
                     <!-- TODO: Add a 'button' to submit the form.
                          - id="add-assignment", type="submit", Text: "Add Assignment" -->
+
                     <button id="add-assignment" type="submit">Add Assignment</button>
-                    
                 <!-- End of fieldset. -->
                  </fieldset>
             <!-- End of form. -->
@@ -77,30 +77,61 @@
          </section>
 
         <!-- Section 2: Existing Assignments List -->
+         
         <!-- TODO: Create a 'section' to display the list of current assignments. -->
             <!-- TODO: Add a sub-heading ('h2') "Current Assignments". -->
+        <section>
+            <h2>Current Assignment</h2>
 
             <!-- TODO: Create a 'table' with id "assignments-table". -->
+            <table id="assignments-table"> 
                 <!-- TODO: Create a 'thead' and a 'tr' inside it. -->
                     <!-- TODO: Add 'th' elements for "Title", "Due Date", and "Actions". -->
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Due Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 
                 <!-- TODO: Create a 'tbody' for the data. -->
+                 <tbody>
+
                     <!-- TODO: Add 1-2 rows of dummy data to see the structure. -->
                     <!-- Example Row 1: -->
                     <!-- TODO: Create a 'tr' for the first assignment. -->
                         <!-- TODO: Add 'td' cells for a title (e.g., "HTML Basics") and a due date. -->
-                        
+                         
                         <!-- TODO: Add a 'td' containing the action buttons. -->
                             <!-- TODO: Add an "Edit" button. -->
                             <!-- TODO: Add a "Delete" button. -->
+                    <tr>
+                        <td>HTML Basics</td>
+                        <td>2025-12-30</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delet-btn">Delet</button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td> Java Script Basics</td>
+                        <td>2026-1-30</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delet-btn">Delet</button>
+                        </td>
+                    </tr>
                         <!-- End of actions 'td'. -->
                     <!-- End of the row. -->
-
+                </tbody>
                 <!-- End of tbody. -->
             <!-- End of table. -->
-         
+             </table>
         <!-- End of list section. -->
-     </main>
+         </section>  
     <!-- End of main. -->
+     </main>
 </body>
 </html>
