@@ -61,6 +61,21 @@ function getAssignmentIdFromURL() {
  */
 function renderAssignmentDetails(assignment) {
   // ... your implementation here ...
+  assignmentTitle.textContent = assignment.title;
+  assignmentDueDate.textContent = "Due: " + assignment.dueDate;
+  assignmentDescription.textContent = assignment.description;
+  assignmentFilesList.innerHTML = '';
+  
+  for (let i = 0; i < assignment.files.length; i++) {
+  const file = assignment.files[i];
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.href = '#';
+  a.textContent = file;
+  li.appendChild(a);
+  assignmentFilesList.appendChild(li);
+}
+
 }
 
 /**
