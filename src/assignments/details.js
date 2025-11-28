@@ -32,7 +32,6 @@ const commentList = document.getElementById('comment-list');
 const commentForm = document.getElementById('comment-form');
 const newCommentText = document.getElementById('new-comment-text');
 
-
 // --- Functions ---
 
 /**
@@ -44,6 +43,10 @@ const newCommentText = document.getElementById('new-comment-text');
  */
 function getAssignmentIdFromURL() {
   // ... your implementation here ...
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get('id');
+  return id;
 }
 
 /**
