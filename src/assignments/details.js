@@ -24,6 +24,14 @@ let currentComments = [];
 
 // --- Element Selections ---
 // TODO: Select all the elements you added IDs for in step 2.
+const assignmentTitle = document.getElementById('assignment-title');
+const assignmentDueDate = document.getElementById('assignment-due-date');
+const assignmentDescription = document.getElementById('assignment-description');
+const assignmentFilesList = document.getElementById('assignment-files-list');
+const commentList = document.getElementById('comment-list');
+const commentForm = document.getElementById('comment-form');
+const newCommentText = document.getElementById('new-comment-text');
+
 
 // --- Functions ---
 
