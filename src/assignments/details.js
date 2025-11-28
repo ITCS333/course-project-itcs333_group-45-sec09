@@ -163,6 +163,30 @@ function handleAddComment(event) {
  */
 async function initializePage() {
   // ... your implementation here ...
+  currentAssignmentId = getAssignmentIdFromURL();
+
+  if (!currentAssignmentId) {
+    assignmentTitle.textContent = 'Error: No assignment ID provided';
+    return;
+  }
+
+  const assignmentsResponse = await fetch('api/assignments.json');
+  const commentsResponse = await fetch('api/comments.json');
+
+  const assignments = await assignmentsResponse.json();
+  const commentsData = await commentsResponse.json();
+
+  const assignment = assignments.find(a => a.id === currentAssignmentId);
+
+  currentComments = commentsData[currentAssignmentId] || [];
+
+  if (assignment) {
+    renderAssignmentDetails(assignment);
+    renderComments();
+    commentForm.addEventListener('submit', handleAddComment);
+  } else {
+    assignmentTitle.textContent = 'Error: Assignment not found';
+  }
 }
 
 // --- Initial Page Load ---
