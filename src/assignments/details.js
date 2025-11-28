@@ -94,7 +94,7 @@ function createCommentArticle(comment) {
   article.appendChild(p);
   article.appendChild(footer);
   return article;
-  
+
 }
 
 /**
@@ -107,6 +107,12 @@ function createCommentArticle(comment) {
  */
 function renderComments() {
   // ... your implementation here ...
+  commentList.innerHTML = "";
+  for (let i = 0; i < currentComments.length; i++) {
+    const comment = currentComments[i];
+    const commentArticle = createCommentArticle(comment);
+    commentList.appendChild(commentArticle);
+  }
 }
 
 /**
