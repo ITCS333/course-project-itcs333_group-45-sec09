@@ -15,7 +15,7 @@
 // TODO: Select the section for the assignment list ('#assignment-list-section').
 
 // --- Functions ---
-
+const assignmentList = document.getElementById('#assignment-list-section');
 /**
  * TODO: Implement the createAssignmentArticle function.
  * It takes one assignment object {id, title, dueDate, description}.
@@ -25,7 +25,16 @@
  */
 function createAssignmentArticle(assignment) {
   // ... your implementation here ...
-}
+  for(let i=0;i<assignmentList.length;i++){
+    if (assignmentList[i].getElementsByTagName('h2').value === assignment.title){
+      if(assignmentList[i].querySelector('p').value === assignment.dueDate){
+        if(assignmentList[i].getElementsByTagName(''))
+      }
+    }
+    
+  }
+  
+  
 
 /**
  * TODO: Implement the loadAssignments function.

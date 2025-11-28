@@ -8,35 +8,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="list.js" defer></script>
     <!-- TODO: Add meta tags for charset and viewport. -->
-    
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- TODO: Add a title, e.g., "Course Assignments". -->
-
+     <title>Course Assignments</title>
     <!-- TODO: Link to your CSS framework or stylesheet. -->
 </head>
 <body>
 
     <!-- TODO: Create a 'header' with a main heading ('h1') "Course Assignments". -->
-
+     <header>
+        <h1>Course Assignments</h1>
+    </header>
+    
     <!-- TODO: Create the 'main' content area. -->
+     <main>
         <!-- TODO: Create a 'section' to contain the list of assignments. -->
+         <section id="assignment-list-section">
             <!-- TODO: Add 2-3 dummy assignment entries using the structure below. -->
 
             <!-- Example Assignment 1: -->
             <!-- TODO: Use an 'article' element for each assignment. -->
+            <article>
                 <!-- TODO: Add a heading ('h2') for the assignment's title (e.g., "Assignment 1: HTML Basics"). -->
                 <!-- TODO: Add a paragraph ('p') to display the due date, e.g., "Due: YYYY-MM-DD". -->
                 <!-- TODO: Add another paragraph ('p') for a brief description. -->
                 <!-- TODO: Add an anchor tag ('a') that links to the detail page. 
                      - For now, the 'href' can be "assignment-detail.html".
                      - The link text should be "View Details & Discussion". -->
+                <h2>Assignment 1: HTML Basics</h2>
+                <p>Due: 2025-11-10</p>
+                <p>Create a semantic HTML structure for a personal portfolio. Focus on using tags like &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, and &lt;footer&gt;.</p>
+                <a href="details.html?id=asg_1">View Details & Discussion</a>
             <!-- End of article. -->
+            </article>
 
             <!-- Example Assignment 2: -->
             <!-- TODO: Create a second 'article' for another assignment with the same structure. -->
+             <article>
+                <h2>Assignment 2: CSS Styling</h2>
+                <p>Due: 2025-11-17</p>
+                <p>Style your HTML portfolio using modern CSS. You must use Flexbox or Grid for layout and include at least one CSS animation.</p>
+                <a href="details.html?id=asg_2">View Details & Discussion</a>
+            </article>
+
+            <article>
+                <h2>Assignment 3: JavaScript Events</h2>
+                <p>Due: 2025-11-24</p>
+                <p>Make your portfolio interactive. Add event listeners to create a modal window for your projects and a theme switcher (light/dark mode).</p>
+                <a href="details.html?id=asg_3">View Details & Discussion</a>
+            </article>
 
         <!-- End of assignment list section. -->
+         </section>
     <!-- End of main. -->
-
+    </main>
 </body>
 </html>
