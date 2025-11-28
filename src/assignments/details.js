@@ -65,7 +65,7 @@ function renderAssignmentDetails(assignment) {
   assignmentDueDate.textContent = "Due: " + assignment.dueDate;
   assignmentDescription.textContent = assignment.description;
   assignmentFilesList.innerHTML = '';
-  
+
   for (let i = 0; i < assignment.files.length; i++) {
   const file = assignment.files[i];
   const li = document.createElement('li');
@@ -85,6 +85,16 @@ function renderAssignmentDetails(assignment) {
  */
 function createCommentArticle(comment) {
   // ... your implementation here ...
+  const article = document.createElement('article');
+  const p = document.createElemen('p');
+  p.textContent = comment.text;
+  const footer = document.createElement('footer');
+  footer.textContent = "Posted by: " + comment.author;
+
+  article.appendChild(p);
+  article.appendChild(footer);
+  return article;
+  
 }
 
 /**
