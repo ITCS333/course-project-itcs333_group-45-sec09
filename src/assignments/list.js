@@ -45,8 +45,7 @@ function createAssignmentArticle(assignment) {
     article.appendChild(a);
 
     return article;
-  
-  
+}  
 
 /**
  * TODO: Implement the loadAssignments function.
