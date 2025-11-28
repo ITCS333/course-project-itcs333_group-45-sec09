@@ -130,6 +130,19 @@ function renderComments() {
  */
 function handleAddComment(event) {
   // ... your implementation here ...
+  event.preventDefault();
+
+  const commentText = newCommentText.value.trim();
+  if (commentText === '') {
+    return;
+  }
+  const newComment = {
+    author: 'Student',
+    text: commentText
+  };
+  currentComments.push(newComment);
+  renderComments();
+  newCommentText.value = '';
 }
 
 /**
