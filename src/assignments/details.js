@@ -162,30 +162,40 @@ function handleAddComment(event) {
  * 7. If the assignment is not found, display an error.
  */
 async function initializePage() {
-  // ... your implementation here ...
   currentAssignmentId = getAssignmentIdFromURL();
-
   if (!currentAssignmentId) {
     assignmentTitle.textContent = 'Error: No assignment ID provided';
     return;
   }
+  try {
+    const [assignmentsResponse, commentsResponse] = await Promise.all([
+      fetch('api/assignments.json'),
+      fetch('api/comments.json')
+    ]);
+    
+    const assignments = await assignmentsResponse.json();
+    const commentsData = await commentsResponse.json();
+  
 
-  const assignmentsResponse = await fetch('api/assignments.json');
-  const commentsResponse = await fetch('api/comments.json');
+    const assignment = assignments.find(a => a.id === currentAssignmentId);
+    
 
-  const assignments = await assignmentsResponse.json();
-  const commentsData = await commentsResponse.json();
+    currentComments = commentsData[currentAssignmentId] || [];
+    
 
-  const assignment = assignments.find(a => a.id === currentAssignmentId);
-
-  currentComments = commentsData[currentAssignmentId] || [];
-
-  if (assignment) {
-    renderAssignmentDetails(assignment);
-    renderComments();
-    commentForm.addEventListener('submit', handleAddComment);
-  } else {
-    assignmentTitle.textContent = 'Error: Assignment not found';
+    if (assignment) {
+      renderAssignmentDetails(assignment);
+      renderComments();
+      
+      
+      commentForm.addEventListener('submit', handleAddComment);
+    } else {
+      
+      assignmentTitle.textContent = 'Error: Assignment not found';
+    }
+  } catch (error) {
+    
+    assignmentTitle.textContent = 'Error: Could not load assignment data';
   }
 }
 
