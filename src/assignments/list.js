@@ -60,8 +60,17 @@ function createAssignmentArticle(assignment) {
  */
 async function loadAssignments() {
   // ... your implementation here ...
-}
+  const response = await fetch('api/assignments.json');
+  const assignments = await response.join();
+ 
+  assignmentList.innerHTML = "";
 
+  for(let i=0;i<assignments.length;i++){
+    const assignment = assignments[i];
+    assignmentList.appendChild(createAssignmentArticle(assignment));
+  }
+
+}
 // --- Initial Page Load ---
 // Call the function to populate the page.
 loadAssignments();
