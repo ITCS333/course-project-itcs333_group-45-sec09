@@ -25,14 +25,26 @@ const assignmentList = document.getElementById('#assignment-list-section');
  */
 function createAssignmentArticle(assignment) {
   // ... your implementation here ...
-  for(let i=0;i<assignmentList.length;i++){
-    if (assignmentList[i].getElementsByTagName('h2').value === assignment.title){
-      if(assignmentList[i].querySelector('p').value === assignment.dueDate){
-        if(assignmentList[i].getElementsByTagName(''))
-      }
-    }
-    
-  }
+    const article = document.createElement('article');
+    const h2 = document.createElement('h2');
+    h2.textContent = assignment.title;
+
+    const dueDateP = document.createElement('p');
+    dueDateP.textContent = `Due: ${assignment.dueDate}`;
+
+    const descriptionP = document.createElement('p');
+    descriptionP.textContent = assignment.description;
+
+    const a = document.createElement('a');
+    a.href = `details.html?id=${assignment.id}`;
+    a.textContent = 'View Details & Discussion';
+
+    article.appendChild(h2);
+    article.appendChild(dueDateP);
+    article.appendChild(descriptionP);
+    article.appendChild(a);
+
+    return article;
   
   
 
