@@ -91,26 +91,53 @@ function isValidPassword(password) {
  * - Call `displayMessage("Login successful!", "success")`.
  * - (Optional) Clear the email and password input fields.
  */
-function handleLogin(event) {
-  event.preventDefault();
+async function handleLogin(event) {
+    event.preventDefault(); // Stop page from refreshing
 
-  const emailValue = emailInput.value.trim();
-  const passwordValue = passwordInput.value.trim();
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
 
-  if (!isValidEmail(emailValue)) {
-    displayMessage("Invalid email format.", "error");
-    return;
-  }
+    // Client-side validation
+    if (!isValidEmail(emailValue)) {
+        displayMessage("Invalid email format.", "error");
+        return;
+    }
 
-  if (!isValidPassword(passwordValue)) {
-    displayMessage("Password must be at least 8 characters.", "error");
-    return;
-  }
+    if (!isValidPassword(passwordValue)) {
+        displayMessage("Password must be at least 8 characters.", "error");
+        return;
+    }
 
-  displayMessage("Login successful!", "success");
+    // --- SEND LOGIN REQUEST TO PHP API ---
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: emailValue,
+                password: passwordValue,
+            }),
+        });
 
-  emailInput.value = "";
-  passwordInput.value = "";
+        const result = await response.json();
+
+        if (result.success) {
+            displayMessage("Login successful! Redirecting...", "success");
+
+            setTimeout(() => {
+                window.location.href = "../admin/manage_users.html";
+            }, 1000);
+
+        } else {
+            displayMessage(result.message, "error");
+        }
+
+    } catch (error) {
+        console.error("Login error:", error);
+        displayMessage("Server error. Please try again later.", "error");
+    }
 }
 
 /**
