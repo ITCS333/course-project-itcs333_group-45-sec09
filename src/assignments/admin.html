@@ -12,7 +12,7 @@
     <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
      <meta charset="UTF-8">
     <!-- TODO: Add the responsive 'viewport' meta tag. -->
-     <meta name="viewport">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- TODO: Add a title, e.g., "Manage Assignments". -->
      <title>Manage Assignments</title>
     <!-- TODO: Link to your CSS framework or stylesheet. -->
@@ -20,64 +20,118 @@
 <body>
 
     <!-- TODO: Create a 'header' with a main heading ('h1') "Manage Assignments". -->
-
+     <header> 
+        <h1>Manage Assignments</h1>
+     </header>
     <!-- TODO: Create the 'main' content area. -->
-
+     <main>
         <!-- Section 1: Add/Edit Assignment Form -->
+        <section>
+            
         <!-- TODO: Create a 'section' for the form. -->
             <!-- TODO: Add a sub-heading ('h2') "Add a New Assignment". -->
-
+             <h2>Add a New Assignment</h2>
             <!-- TODO: Create a 'form' with an id "assignment-form". Action can be '#'. -->
+             <form id="assignment-form" action="#">
                 <!-- TODO: Use a 'fieldset' to group the form controls. -->
+                 <fieldset>
                     <!-- TODO: Add a 'legend', e.g., "Assignment Details". -->
-
-                    <!-- TODO: Add a 'label' and 'input' for the assignment title.
+                     <legend>Assignment Details </legend>
+                     
+                    <!-- TODO: Add a 'label' and 'input' for the assignment title. 
                          - label 'for': "assignment-title"
                          - input 'id': "assignment-title", type="text", required -->
-
+                     <label for="assignment-title">Assignment Title:</label>
+                     <input type="text" id="assignment-title" required>
+   
+                    
                     <!-- TODO: Add a 'label' and 'textarea' for the description.
                          - label 'for': "assignment-description"
                          - textarea 'id': "assignment-description", rows="5", required -->
-
+                    <label for="assignment-description">Description:</label>
+                    <textarea id="assignment-description" rows="5" required></textarea>
+                    
                     <!-- TODO: Add a 'label' and 'input' for the due date.
                          - label 'for': "assignment-due-date"
                          - input 'id': "assignment-due-date", type="date", required -->
                     
+                    <label for="assignment-due-date">Due Date:</label>
+                    <input type="date" id="assignment-due-date" required>
+
                     <!-- TODO: Add a 'label' and 'textarea' for attached files or links (one per line).
                          - label 'for': "assignment-files"
                          - textarea 'id': "assignment-files", rows="3" -->
 
+                    <label for="assignment-files">Attached Files/Links (one per line):</label>
+                    <textarea id="assignment-files" rows="3"></textarea>
+
                     <!-- TODO: Add a 'button' to submit the form.
                          - id="add-assignment", type="submit", Text: "Add Assignment" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of form section. -->
 
+                    <button id="add-assignment" type="submit">Add Assignment</button>
+                <!-- End of fieldset. -->
+                 </fieldset>
+            <!-- End of form. -->
+             </form>
+        <!-- End of form section. -->
+         </section>
 
         <!-- Section 2: Existing Assignments List -->
+         
         <!-- TODO: Create a 'section' to display the list of current assignments. -->
             <!-- TODO: Add a sub-heading ('h2') "Current Assignments". -->
+        <section>
+            <h2>Current Assignment</h2>
 
             <!-- TODO: Create a 'table' with id "assignments-table". -->
+            <table id="assignments-table"> 
                 <!-- TODO: Create a 'thead' and a 'tr' inside it. -->
                     <!-- TODO: Add 'th' elements for "Title", "Due Date", and "Actions". -->
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Due Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 
                 <!-- TODO: Create a 'tbody' for the data. -->
+                 <tbody id="assignments-tbody">
+
                     <!-- TODO: Add 1-2 rows of dummy data to see the structure. -->
                     <!-- Example Row 1: -->
                     <!-- TODO: Create a 'tr' for the first assignment. -->
                         <!-- TODO: Add 'td' cells for a title (e.g., "HTML Basics") and a due date. -->
-                        
+                         
                         <!-- TODO: Add a 'td' containing the action buttons. -->
                             <!-- TODO: Add an "Edit" button. -->
                             <!-- TODO: Add a "Delete" button. -->
+                    <tr>
+                        <td>HTML Basics</td>
+                        <td>2025-12-30</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delet-btn">Delet</button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td> Java Script Basics</td>
+                        <td>2026-1-30</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delet-btn">Delet</button>
+                        </td>
+                    </tr>
                         <!-- End of actions 'td'. -->
                     <!-- End of the row. -->
-
+                </tbody>
                 <!-- End of tbody. -->
             <!-- End of table. -->
+             </table>
         <!-- End of list section. -->
-
+         </section>  
     <!-- End of main. -->
+     </main>
 </body>
 </html>
