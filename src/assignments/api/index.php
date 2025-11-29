@@ -176,28 +176,34 @@ function getAllAssignments($db) {
  */
 function getAssignmentById($db, $assignmentId) {
     // TODO: Validate that $assignmentId is provided and not empty
-    
+    if (empty($assignmentId)) {
+        sendResponse(['error' => 'Assignment ID is required'], 400);
+    }
     
     // TODO: Prepare SQL query to select assignment by id
-    
+    $sql = "SELECT * FROM assignments WHERE id = :id";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind the :id parameter
-    
+    $stmt->bindValue(':id', $assignmentId);
+
     
     // TODO: Execute the statement
-    
+    $stmt->execute();
     
     // TODO: Fetch the result as associative array
-    
+    $assignment = $stmt->fetch(PDO::FETCH_ASSOC);
     
     // TODO: Check if assignment was found
-    
+    if (!$assignment) {
+        sendResponse(['error' => 'Assignment not found'], 404);
+    }
     
     // TODO: Decode the 'files' field from JSON to array
-    
+    $assignment['files'] = json_decode($assignment['files'], true);
     
     // TODO: Return success response with assignment data
-    
+    sendResponse(['assignment' => $assignment], 200);
 }
 
 
