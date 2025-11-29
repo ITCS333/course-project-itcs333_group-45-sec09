@@ -1,84 +1,334 @@
-<!--
-  Requirement: Create the Admin View for the Weekly Breakdown
-
-  Instructions:
-  Fill in the HTML elements as described in the comments.
-  This page allows the teacher (admin) to perform full CRUD operations on the weekly course content.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
-    
-    <!-- TODO: Add the responsive 'viewport' meta tag. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Weekly Breakdown</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-    <!-- TODO: Add a title, e.g., "Manage Weekly Breakdown". -->
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(135deg, #0078d7, #00b4d8);
+          color: #333;
+          min-height: 100vh;
+          line-height: 1.6;
+        }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+        header {
+          background-color: #004aad;
+          color: #fff;
+          padding: 1.5rem 0;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          margin-bottom: 2rem;
+        }
+
+        header h1 {
+          font-size: 2rem;
+          letter-spacing: 1px;
+          font-weight: 600;
+        }
+
+        main {
+          max-width: 1200px;
+          margin: 2rem auto;
+          background-color: #fff;
+          border-radius: 12px;
+          padding: 2.5rem;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+          margin-bottom: 3rem;
+        }
+
+        section h2 {
+          color: #004aad;
+          margin-bottom: 1.5rem;
+          border-bottom: 3px solid #0078d7;
+          display: inline-block;
+          padding-bottom: 0.3rem;
+          font-size: 1.5rem;
+        }
+
+        form {
+          margin-top: 1rem;
+        }
+
+        fieldset {
+          border: 2px solid #0078d7;
+          border-radius: 10px;
+          padding: 1.5rem;
+          background-color: #f9fbff;
+          margin-bottom: 2rem;
+        }
+
+        legend {
+          font-weight: bold;
+          color: #004aad;
+          padding: 0 10px;
+          font-size: 1.1rem;
+        }
+
+        label {
+          display: block;
+          font-weight: 500;
+          margin-top: 1rem;
+          margin-bottom: 0.3rem;
+          color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+          width: 100%;
+          padding: 0.7rem;
+          margin-top: 0.3rem;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 1rem;
+          font-family: inherit;
+          transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        input:focus,
+        textarea:focus {
+          outline: none;
+          border-color: #0078d7;
+          box-shadow: 0 0 5px rgba(0, 120, 215, 0.4);
+        }
+
+        button {
+          background-color: #0078d7;
+          color: white;
+          padding: 0.8rem 1.5rem;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1rem;
+          margin-top: 1rem;
+          transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+          background-color: #005fa3;
+          transform: translateY(-2px);
+        }
+
+        button:active {
+          transform: scale(0.98);
+        }
+
+        .edit-btn {
+          background-color: #0078d7;
+          padding: 0.5rem 1rem;
+          margin: 0.2rem;
+          font-size: 0.9rem;
+        }
+
+        .delete-btn {
+          background-color: #d32f2f;
+          padding: 0.5rem 1rem;
+          margin: 0.2rem;
+          font-size: 0.9rem;
+        }
+
+        .delete-btn:hover {
+          background-color: #b71c1c;
+        }
+
+        .action-buttons {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 1.5rem;
+          background-color: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        thead {
+          background-color: #0078d7;
+          color: white;
+        }
+
+        th {
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+
+        td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:nth-child(even) {
+          background-color: #f4faff;
+        }
+
+        tbody tr:hover {
+          background-color: #eaf3ff;
+          transition: background-color 0.2s;
+        }
+
+        @media (max-width: 768px) {
+          main {
+            padding: 1.5rem;
+            margin: 1rem;
+          }
+
+          header h1 {
+            font-size: 1.6rem;
+          }
+
+          section h2 {
+            font-size: 1.3rem;
+          }
+
+          table, thead, tbody, th, td, tr {
+            display: block;
+          }
+
+          thead {
+            display: none;
+          }
+
+          tr {
+            margin-bottom: 1rem;
+            border: 2px solid #0078d7;
+            border-radius: 8px;
+            padding: 0.8rem;
+            background-color: #fff;
+          }
+
+          td {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid #eee;
+          }
+
+          td:last-child {
+            border-bottom: none;
+          }
+
+          td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #004aad;
+            margin-right: 1rem;
+          }
+
+          .action-buttons {
+            width: 100%;
+            justify-content: flex-end;
+          }
+
+          fieldset {
+            padding: 1rem;
+          }
+
+          button {
+            width: 100%;
+          }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Manage Weekly Breakdown</h1>
+    </header>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') "Manage Weekly Breakdown". -->
-
-    <!-- TODO: Create the 'main' content area. -->
-
+    <main>
         <!-- Section 1: Add/Edit Week Form -->
-        <!-- TODO: Create a 'section' for the form. -->
-            <!-- TODO: Add a sub-heading ('h2') "Add a New Week". -->
+        <section>
+            <h2>Add a New Week</h2>
 
-            <!-- TODO: Create a 'form' with an id "week-form". Action can be '#'. -->
-                <!-- TODO: Use a 'fieldset' to group the form controls. -->
-                    <!-- TODO: Add a 'legend', e.g., "Weekly Details". -->
+            <form id="week-form">
+                <fieldset>
+                    <legend>Weekly Details</legend>
 
-                    <!-- TODO: Add a 'label' and 'input' for the week's title.
-                         - label 'for': "week-title"
-                         - input 'id': "week-title", type="text", required
-                         - Example placeholder: "Week 1: Introduction to HTML" -->
+                    <label for="week-title">
+                        Week Title
+                        <input 
+                            type="text" 
+                            id="week-title" 
+                            name="week-title" 
+                            placeholder="Week 1: Introduction to HTML" 
+                            required>
+                    </label>
 
-                    <!-- TODO: Add a 'label' and 'input' for the week's starting date.
-                         - label 'for': "week-start-date"
-                         - input 'id': "week-start-date", type="date", required -->
+                    <label for="week-start-date">
+                        Start Date
+                        <input 
+                            type="date" 
+                            id="week-start-date" 
+                            name="week-start-date" 
+                            required>
+                    </label>
 
-                    <!-- TODO: Add a 'label' and 'textarea' for the week's description and notes.
-                         - label 'for': "week-description"
-                         - textarea 'id': "week-description", rows="5" -->
+                    <label for="week-description">
+                        Description & Notes
+                        <textarea 
+                            id="week-description" 
+                            name="week-description" 
+                            rows="5" 
+                            placeholder="Enter week description and notes..."></textarea>
+                    </label>
                     
-                    <!-- TODO: Add a 'label' and 'textarea' for links to exercises or resources (one link per line).
-                         - label 'for': "week-links"
-                         - textarea 'id': "week-links", rows="3" -->
+                    <label for="week-links">
+                        Exercises & Resources Links (one per line)
+                        <textarea 
+                            id="week-links" 
+                            name="week-links" 
+                            rows="3" 
+                            placeholder="https://example.com/exercise1
+https://example.com/resource2"></textarea>
+                    </label>
 
-                    <!-- TODO: Add a 'button' to submit the form.
-                         - id="add-week", type="submit", Text: "Add Week" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of form section. -->
-
+                    <button type="submit" id="add-week">Add Week</button>
+                </fieldset>
+            </form>
+        </section>
 
         <!-- Section 2: Existing Weekly Entries -->
-        <!-- TODO: Create a 'section' to display the list of current weeks. -->
-            <!-- TODO: Add a sub-heading ('h2') "Current Weekly Breakdown". -->
+        <section>
+            <h2>Current Weekly Breakdown</h2>
 
-            <!-- TODO: Create a 'table' with id "weeks-table". -->
-                <!-- TODO: Create a 'thead' and a 'tr' inside it. -->
-                    <!-- TODO: Add 'th' elements for "Week Title", "Description", and "Actions". -->
-                
-                <!-- TODO: Create a 'tbody' for the data. -->
-                    <!-- TODO: Add 1-2 rows of dummy data to see the structure. -->
-                    <!-- Example Row 1: -->
-                    <!-- TODO: Create a 'tr' for the first week. -->
-                        <!-- TODO: Add 'td' cells for a title (e.g., "Week 1: Intro to HTML") and a short description. -->
-                        
-                        <!-- TODO: Add a 'td' containing the action buttons. -->
-                            <!-- TODO: Add an "Edit" button. -->
-                            <!-- TODO: Add a "Delete" button. -->
-                        <!-- End of actions 'td'. -->
-                    <!-- End of the row. -->
+            <table id="weeks-table">
+                <thead>
+                    <tr>
+                        <th>Week Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="weeks-tbody">
+                    <!-- Data will be loaded dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-                <!-- End of tbody. -->
-            <!-- End of table. -->
-        <!-- End of list section. -->
-
-    <!-- End of main. -->
+    <script src="admin.js"></script>
 </body>
 </html>
-

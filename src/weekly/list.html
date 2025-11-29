@@ -1,44 +1,151 @@
-<!--
-  Requirement: Create the Student View for the Weekly Breakdown
-
-  Instructions:
-  This page is a read-only view for students to see the plan for all weeks.
-  Each week should link to its dedicated detail page.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add meta tags for charset and viewport. -->
-    
-    <!-- TODO: Add a title, e.g., "Weekly Course Breakdown". -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Course Breakdown</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(135deg, #0078d7, #00b4d8);
+          color: #333;
+          min-height: 100vh;
+          line-height: 1.6;
+        }
+
+        header {
+          background-color: #004aad;
+          color: #fff;
+          padding: 1.5rem 0;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          margin-bottom: 2rem;
+        }
+
+        header h1 {
+          font-size: 2rem;
+          letter-spacing: 1px;
+          font-weight: 600;
+        }
+
+        main {
+          max-width: 1200px;
+          margin: 2rem auto;
+          background-color: #fff;
+          border-radius: 12px;
+          padding: 2.5rem;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+          margin-bottom: 3rem;
+        }
+
+        article {
+          margin-bottom: 2rem;
+          padding: 1.5rem;
+          border: 2px solid #0078d7;
+          border-radius: 10px;
+          background-color: #f9fbff;
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        article:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 15px rgba(0, 120, 215, 0.2);
+        }
+
+        article h2 {
+          margin-top: 0;
+          color: #004aad;
+          font-size: 1.4rem;
+          border-bottom: none;
+          display: block;
+          padding-bottom: 0;
+        }
+
+        .week-date {
+          color: #666;
+          font-size: 0.9rem;
+          margin: 0.5rem 0 1rem 0;
+          font-style: italic;
+        }
+
+        article p {
+          margin-bottom: 1rem;
+          line-height: 1.6;
+        }
+
+        .view-details-link {
+          display: inline-block;
+          margin-top: 1rem;
+          padding: 0.6rem 1.2rem;
+          background-color: #0078d7;
+          color: white;
+          text-decoration: none;
+          border-radius: 6px;
+          font-weight: 600;
+          transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .view-details-link:hover {
+          background-color: #005fa3;
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+          main {
+            padding: 1.5rem;
+            margin: 1rem;
+          }
+
+          header h1 {
+            font-size: 1.6rem;
+          }
+
+          article {
+            padding: 1rem;
+          }
+
+          article h2 {
+            font-size: 1.2rem;
+          }
+
+          .view-details-link {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          header h1 {
+            font-size: 1.4rem;
+          }
+
+          main {
+            padding: 1rem;
+            margin: 0.5rem;
+          }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Weekly Course Breakdown</h1>
+    </header>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') "Weekly Course Breakdown". -->
+    <main>
+        <section id="week-list-section">
+            <!-- Week articles will be dynamically inserted here -->
+        </section>
+    </main>
 
-    <!-- TODO: Create the 'main' content area. -->
-        <!-- TODO: Create a 'section' to contain the list of weeks. -->
-            <!-- TODO: Add 2-3 dummy weekly entries using the structure below. -->
-
-            <!-- Example Week 1: -->
-            <!-- TODO: Use an 'article' element for each week to group its content semantically. -->
-                <!-- TODO: Add a heading ('h2') for the week's title (e.g., "Week 1: Introduction to HTML"). -->
-                <!-- TODO: Add a paragraph ('p') to display the start date, e.g., "Starts on: YYYY-MM-DD". -->
-                <!-- TODO: Add a paragraph ('p') for a brief description of the week. -->
-                <!-- TODO: Add an anchor tag ('a') that links to the detail page. 
-                     - For now, the 'href' can be "week-detail.html".
-                     - The link text should be "View Details & Discussion". -->
-            <!-- End of article. -->
-
-            <!-- Example Week 2: -->
-            <!-- TODO: Create a second 'article' for another week. -->
-                <!-- TODO: Add a heading, a paragraph for the start date, a paragraph for the description, and an anchor tag linking to "week-detail.html". -->
-            <!-- End of article. -->
-
-        <!-- End of weekly list section. -->
-    <!-- End of main. -->
-
+    <script src="list.js"></script>
 </body>
 </html>
