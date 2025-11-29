@@ -295,38 +295,78 @@ function createAssignment($db, $data) {
 function updateAssignment($db, $data) {
     // TODO: Validate that 'id' is provided in $data
     
+    if (empty($data['id'])) {
+        sendResponse(['error' => 'Assignment ID is required'], 400);
+    }
     
     // TODO: Store assignment ID in variable
-    
+    $assignmentId = $data['id'];
     
     // TODO: Check if assignment exists
+    $checkSql = "SELECT id FROM assignments WHERE id = :id";
+    $checkStmt = $db->prepare($checkSql);
+    $checkStmt->bindValue(':id', $assignmentId);
+    $checkStmt->execute();
     
+    if (!$checkStmt->fetch()) {
+        sendResponse(['error' => 'Assignment not found'], 404);
+    }
     
     // TODO: Build UPDATE query dynamically based on provided fields
-    
+    $updateFields = [];
+    $params = [':id' => $assignmentId];
     
     // TODO: Check which fields are provided and add to SET clause
+    if (isset($data['title']) && !empty($data['title'])) {
+        $updateFields[] = "title = :title";
+        $params[':title'] = sanitizeInput($data['title']);
+    }
     
+    if (isset($data['description']) && !empty($data['description'])) {
+        $updateFields[] = "description = :description";
+        $params[':description'] = sanitizeInput($data['description']);
+    }
+    
+    if (isset($data['due_date']) && !empty($data['due_date'])) {
+        if (!validateDate($data['due_date'])) {
+            sendResponse(['error' => 'Invalid date format. Use YYYY-MM-DD'], 400);
+        }
+        $updateFields[] = "due_date = :due_date";
+        $params[':due_date'] = $data['due_date'];
+    }
+    
+    if (isset($data['files'])) {
+        $files = is_array($data['files']) ? $data['files'] : [];
+        $updateFields[] = "files = :files";
+        $params[':files'] = json_encode($files);
+    }
     
     // TODO: If no fields to update (besides updated_at), return 400 error
-    
+    if (empty($updateFields)) {
+        sendResponse(['error' => 'No fields to update'], 400);
+    }
     
     // TODO: Complete the UPDATE query
-    
+    $sql = "UPDATE assignments SET " . implode(', ', $updateFields) . ", updated_at = NOW() WHERE id = :id";
     
     // TODO: Prepare the statement
-    
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind all parameters dynamically
-    
+    foreach ($params as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
     
     // TODO: Execute the statement
-    
+    $success = $stmt->execute();
     
     // TODO: Check if update was successful
-    
+    if ($success) {
+        sendResponse(['message' => 'Assignment updated successfully'], 200);
+    }
     
     // TODO: If no rows affected, return appropriate message
+    sendResponse(['error' => 'Failed to update assignment'], 500);
     
 }
 
