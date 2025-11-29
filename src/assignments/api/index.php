@@ -382,27 +382,43 @@ function updateAssignment($db, $data) {
  */
 function deleteAssignment($db, $assignmentId) {
     // TODO: Validate that $assignmentId is provided and not empty
-    
+    if (empty($assignmentId)) {
+        sendResponse(['error' => 'Assignment ID is required'], 400);
+    }
     
     // TODO: Check if assignment exists
+    $checkSql = "SELECT id FROM assignments WHERE id = :id";
+    $checkStmt = $db->prepare($checkSql);
+    $checkStmt->bindValue(':id', $assignmentId);
+    $checkStmt->execute();
     
+    if (!$checkStmt->fetch()) {
+        sendResponse(['error' => 'Assignment not found'], 404);
+    }
     
     // TODO: Delete associated comments first (due to foreign key constraint)
-    
+    $deleteCommentsSql = "DELETE FROM comments WHERE assignment_id = :assignment_id";
+    $deleteCommentsStmt = $db->prepare($deleteCommentsSql);
+    $deleteCommentsStmt->bindValue(':assignment_id', $assignmentId);
+    $deleteCommentsStmt->execute();
     
     // TODO: Prepare DELETE query for assignment
-    
+    $sql = "DELETE FROM assignments WHERE id = :id";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind the :id parameter
-    
+    $stmt->bindValue(':id', $assignmentId);
     
     // TODO: Execute the statement
-    
+    $success = $stmt->execute();
     
     // TODO: Check if delete was successful
-    
+    if ($success) {
+        sendResponse(['message' => 'Assignment deleted successfully'], 200);
+    }
     
     // TODO: If delete failed, return 500 error
+    sendResponse(['error' => 'Failed to delete assignment'], 500);
     
 }
 
