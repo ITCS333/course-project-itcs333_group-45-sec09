@@ -81,13 +81,15 @@ try {
 // ============================================================================
 
 // TODO: Get the HTTP request method
+$method = $_SERVER['REQUEST_METHOD'];
 
 
 // TODO: Get the request body for POST and PUT requests
-
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
 
 // TODO: Parse query parameters
-
+$resource = $_GET['resource'] ?? null;
 
 
 // ============================================================================
