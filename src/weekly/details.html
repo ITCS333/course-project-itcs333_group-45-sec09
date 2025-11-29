@@ -1,66 +1,302 @@
-<!--
-  Requirement: Create the Dedicated Page for a Single Week
-
-  Instructions:
-  This page displays the full details for one week and allows for discussion.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add meta tags for charset and viewport. -->
-    
-    <!-- TODO: Add a title, for now use "Week Details". -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week Details</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(135deg, #0078d7, #00b4d8);
+          color: #333;
+          min-height: 100vh;
+          line-height: 1.6;
+        }
+
+        header {
+          background-color: #004aad;
+          color: #fff;
+          padding: 1.5rem 0;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          margin-bottom: 2rem;
+        }
+
+        header h1 {
+          font-size: 2rem;
+          letter-spacing: 1px;
+          font-weight: 600;
+        }
+
+        main {
+          max-width: 1200px;
+          margin: 2rem auto;
+          background-color: #fff;
+          border-radius: 12px;
+          padding: 2.5rem;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+          color: #004aad;
+          margin-bottom: 1.5rem;
+          border-bottom: 3px solid #0078d7;
+          display: inline-block;
+          padding-bottom: 0.3rem;
+          font-size: 1.5rem;
+        }
+
+        .week-info {
+          margin-bottom: 3rem;
+          padding: 1.5rem;
+          background-color: #f9fbff;
+          border-radius: 10px;
+          border-left: 5px solid #0078d7;
+        }
+
+        .week-info h2 {
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+        }
+
+        .week-info h2:first-of-type {
+          margin-top: 0;
+        }
+
+        #week-start-date {
+          color: #666;
+          font-style: italic;
+          margin-bottom: 1rem;
+        }
+
+        #week-links-list {
+          list-style: none;
+          padding-left: 0;
+        }
+
+        #week-links-list li {
+          margin-bottom: 0.7rem;
+          padding-left: 1.5rem;
+          position: relative;
+        }
+
+        #week-links-list li::before {
+          content: "→";
+          position: absolute;
+          left: 0;
+          color: #0078d7;
+          font-weight: bold;
+        }
+
+        #week-links-list a {
+          color: #0078d7;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+        }
+
+        #week-links-list a:hover {
+          color: #005fa3;
+          text-decoration: underline;
+        }
+
+        #discussion-forum {
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 3px solid #0078d7;
+        }
+
+        #comment-list {
+          margin-bottom: 2rem;
+        }
+
+        .comment-article {
+          background-color: #f4faff;
+          padding: 1.2rem;
+          margin-bottom: 1rem;
+          border-radius: 8px;
+          border-left: 4px solid #0078d7;
+          transition: box-shadow 0.3s;
+        }
+
+        .comment-article:hover {
+          box-shadow: 0 3px 10px rgba(0, 120, 215, 0.15);
+        }
+
+        .comment-article p {
+          margin-bottom: 0.7rem;
+          color: #333;
+          line-height: 1.6;
+        }
+
+        .comment-article footer {
+          font-size: 0.85rem;
+          color: #666;
+          font-style: italic;
+          border-top: 1px solid #ddd;
+          padding-top: 0.5rem;
+          margin-top: 0.5rem;
+        }
+
+        form {
+          margin-top: 1rem;
+        }
+
+        fieldset {
+          border: 2px solid #0078d7;
+          border-radius: 10px;
+          padding: 1.5rem;
+          background-color: #f9fbff;
+          margin-bottom: 2rem;
+        }
+
+        legend {
+          font-weight: bold;
+          color: #004aad;
+          padding: 0 10px;
+          font-size: 1.1rem;
+        }
+
+        label {
+          display: block;
+          font-weight: 500;
+          margin-top: 1rem;
+          margin-bottom: 0.3rem;
+          color: #333;
+        }
+
+        textarea {
+          width: 100%;
+          padding: 0.7rem;
+          margin-top: 0.3rem;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 1rem;
+          font-family: inherit;
+          resize: vertical;
+          min-height: 100px;
+          transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+          outline: none;
+          border-color: #0078d7;
+          box-shadow: 0 0 5px rgba(0, 120, 215, 0.4);
+        }
+
+        button {
+          background-color: #0078d7;
+          color: white;
+          padding: 0.8rem 1.5rem;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1rem;
+          margin-top: 1rem;
+          transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+          background-color: #005fa3;
+          transform: translateY(-2px);
+        }
+
+        button:active {
+          transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+          main {
+            padding: 1.5rem;
+            margin: 1rem;
+          }
+
+          header h1 {
+            font-size: 1.6rem;
+          }
+
+          section h2 {
+            font-size: 1.3rem;
+          }
+
+          fieldset {
+            padding: 1rem;
+          }
+
+          button {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          header h1 {
+            font-size: 1.4rem;
+          }
+
+          main {
+            padding: 1rem;
+            margin: 0.5rem;
+          }
+        }
+    </style>
 </head>
 <body>
-    <!-- TODO: Create a 'header' with a main heading ('h1'). Use a dummy title like "Week 1: Introduction to HTML". -->
+    <header>
+        <h1 id="week-title">Loading...</h1>
+    </header>
 
-    <!-- TODO: Create the 'main' content area. -->
-
+    <main>
         <!-- Section 1: Weekly Information -->
-        <!-- TODO: Use an 'article' to display the main weekly information. -->
-            <!-- TODO: Add a paragraph ('p') to display the start date, e.g., "Starts on: YYYY-MM-DD". -->
-            <!-- TODO: Add a sub-heading ('h2') "Description & Notes". -->
-            <!-- TODO: Add a paragraph ('p') with dummy text for the week's detailed notes. -->
+        <article class="week-info">
+            <p id="week-start-date">Loading...</p>
+            
+            <h2>Description & Notes</h2>
+            <p id="week-description">Loading...</p>
 
-            <!-- TODO: Add another sub-heading ('h2') "Exercises & Resources". -->
-            <!-- TODO: Use an unordered list ('ul') to display the links for the week. -->
-                <!-- TODO: Add list items ('li') with anchor tags ('a') for each resource. Use dummy links for now. -->
-                <!-- Example: <li><a href="#">Exercise 1 - Basic Tags</a></li> -->
-            <!-- End of the list. -->
-        <!-- End of article. -->
+            <h2>Exercises & Resources</h2>
+            <ul id="week-links-list">
+                <li>Loading...</li>
+            </ul>
+        </article>
 
         <!-- Section 2: Discussion Forum -->
-        <!-- TODO: Create a 'section' for the discussion, with an 'id' of "discussion-forum". -->
-            <!-- TODO: Add a sub-heading ('h2') "Discussion". -->
+        <section id="discussion-forum">
+            <h2>Discussion</h2>
 
-            <!-- Subsection 2.1: Existing Comments -->
-            <!-- TODO: Add a container (like a 'div') for the list of comments. -->
-                <!-- TODO: Add 1-2 dummy comments to show the structure. -->
+            <!-- Existing Comments -->
+            <div id="comment-list">
+                <!-- Comments will be loaded dynamically -->
+            </div>
 
-                <!-- Example Comment 1: -->
-                <!-- TODO: Use an 'article' for each comment. -->
-                    <!-- TODO: Use a 'p' for the comment text (e.g., "I have a question about the 'header' tag."). -->
-                    <!-- TODO: Use a 'footer' to show the author (e.g., "Posted by: John Doe"). -->
-                <!-- End of comment article. -->
+            <!-- Add a Comment Form -->
+            <form id="comment-form">
+                <fieldset>
+                    <legend>Ask a Question</legend>
 
-            <!-- Subsection 2.2: Add a Comment Form -->
-            <!-- TODO: Create a 'form' for users to post new comments. Action can be '#'. -->
-                <!-- TODO: Use a 'fieldset' to group the controls. -->
-                    <!-- TODO: Add a 'legend', e.g., "Ask a Question". -->
-
-                    <!-- TODO: Add a 'label' and 'textarea' for the comment box.
-                         - label 'for': "new-comment"
-                         - textarea 'id': "new-comment", required -->
+                    <label for="new-comment-text">
+                        Your Comment
+                        <textarea 
+                            id="new-comment-text" 
+                            name="new-comment" 
+                            rows="4"
+                            placeholder="Type your question or comment here..."
+                            required></textarea>
+                    </label>
                     
-                    <!-- TODO: Add a 'button' to submit the comment.
-                         - type="submit", Text: "Post Comment" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of discussion section. -->
+                    <button type="submit">Post Comment</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
 
-    <!-- End of main. -->
+    <script src="details.js"></script>
 </body>
 </html>
-
