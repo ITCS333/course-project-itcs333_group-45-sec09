@@ -17,9 +17,9 @@ let assignments = [];
 
 // --- Element Selections ---
 // TODO: Select the assignment form ('#assignment-form').
-const assignmentForm = document.getElementById('#assignment-form');
+const assignmentForm = document.getElementById('assignment-form');
 // TODO: Select the assignments table body ('#assignments-tbody').
-const assignmentsTableBody = document.getElementById('#assignments-tbody');
+const assignmentsTableBody = document.getElementById('assignments-tbody');
 
 // --- Functions ---
 
