@@ -476,30 +476,60 @@ function getCommentsByAssignment($db, $assignmentId) {
  */
 function createComment($db, $data) {
     // TODO: Validate required fields
-    
+    if (empty($data['assignment_id']) || empty($data['author']) || empty($data['text'])) {
+        sendResponse(['error' => 'Assignment ID, author, and text are required'], 400);
+    }
     
     // TODO: Sanitize input data
-    
+    $assignmentId = $data['assignment_id'];
+    $author = sanitizeInput($data['author']);
+    $text = sanitizeInput($data['text']);
     
     // TODO: Validate that text is not empty after trimming
-    
+    if (empty(trim($text))) {
+        sendResponse(['error' => 'Comment text cannot be empty'], 400);
+    }
     
     // TODO: Verify that the assignment exists
+    $checkSql = "SELECT id FROM assignments WHERE id = :id";
+    $checkStmt = $db->prepare($checkSql);
+    $checkStmt->bindValue(':id', $assignmentId);
+    $checkStmt->execute();
     
+    if (!$checkStmt->fetch()) {
+        sendResponse(['error' => 'Assignment not found'], 404);
+    }
     
     // TODO: Prepare INSERT query for comment
-    
+    $sql = "INSERT INTO comments (assignment_id, author, text) 
+            VALUES (:assignment_id, :author, :text)";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind all parameters
-    
+    $stmt->bindValue(':assignment_id', $assignmentId);
+    $stmt->bindValue(':author', $author);
+    $stmt->bindValue(':text', $text);
     
     // TODO: Execute the statement
-    
+    $success = $stmt->execute();
     
     // TODO: Get the ID of the inserted comment
-    
+    $commentId = $db->lastInsertId();
     
     // TODO: Return success response with created comment data
+    if ($success) {
+        sendResponse([
+            'message' => 'Comment created successfully',
+            'comment' => [
+                'id' => $commentId,
+                'assignment_id' => $assignmentId,
+                'author' => $author,
+                'text' => $text
+            ]
+        ], 201);
+    }
+    
+    sendResponse(['error' => 'Failed to create comment'], 500);
     
 }
 
