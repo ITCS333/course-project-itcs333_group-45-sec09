@@ -588,7 +588,6 @@ function deleteComment($db, $commentId) {
 try {
     // TODO: Get the 'resource' query parameter to determine which resource to access
     
-    
     // TODO: Route based on HTTP method and resource type
     
     if ($method === 'GET') {
@@ -596,13 +595,26 @@ try {
         
         if ($resource === 'assignments') {
             // TODO: Check if 'id' query parameter exists
+            if (isset($_GET['id'])) {
+                
+                getAssignmentById($db, $_GET['id']);
+            } else {
+                
+                getAllAssignments($db);
+            }
             
         } elseif ($resource === 'comments') {
             // TODO: Check if 'assignment_id' query parameter exists
+            if (isset($_GET['assignment_id'])) {
+                
+                getCommentsByAssignment($db, $_GET['assignment_id']);
+            } else {
+                sendResponse(['error' => 'assignment_id parameter is required for comments'], 400);
+            }
             
         } else {
             // TODO: Invalid resource, return 400 error
-            
+            sendResponse(['error' => 'Invalid resource. Use assignments or comments'], 400);
         }
         
     } elseif ($method === 'POST') {
@@ -610,13 +622,15 @@ try {
         
         if ($resource === 'assignments') {
             // TODO: Call createAssignment($db, $data)
+            createAssignment($db, $data);
             
         } elseif ($resource === 'comments') {
             // TODO: Call createComment($db, $data)
+            createComment($db, $data);
             
         } else {
             // TODO: Invalid resource, return 400 error
-            
+            sendResponse(['error' => 'Invalid resource. Use assignments or comments'], 400);
         }
         
     } elseif ($method === 'PUT') {
@@ -624,10 +638,11 @@ try {
         
         if ($resource === 'assignments') {
             // TODO: Call updateAssignment($db, $data)
+            updateAssignment($db, $data);
             
         } else {
             // TODO: PUT not supported for other resources
-            
+            sendResponse(['error' => 'PUT method is only supported for assignments'], 400);
         }
         
     } elseif ($method === 'DELETE') {
@@ -635,26 +650,31 @@ try {
         
         if ($resource === 'assignments') {
             // TODO: Get 'id' from query parameter or request body
+            $id = $_GET['id'] ?? $data['id'] ?? null;
+            deleteAssignment($db, $id);
             
         } elseif ($resource === 'comments') {
             // TODO: Get comment 'id' from query parameter
+            $id = $_GET['id'] ?? $data['id'] ?? null;
+            deleteComment($db, $id);
             
         } else {
             // TODO: Invalid resource, return 400 error
-            
+            sendResponse(['error' => 'Invalid resource. Use assignments or comments'], 400);
         }
         
     } else {
         // TODO: Method not supported
-        
+        sendResponse(['error' => 'HTTP method not supported'], 405);
     }
     
 } catch (PDOException $e) {
     // TODO: Handle database errors
+    sendResponse(['error' => 'Database error: ' . $e->getMessage()], 500);
     
 } catch (Exception $e) {
     // TODO: Handle general errors
-    
+    sendResponse(['error' => 'Server error: ' . $e->getMessage()], 500);
 }
 
 
