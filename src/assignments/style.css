@@ -1,0 +1,259 @@
+/* ===== STEP 1: Basic Reset and Body Styling ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0078d7, #00b4d8);
+  color: #333;
+  min-height: 100vh;
+}
+
+/* ===== STEP 2: Header Styling ===== */
+
+header {
+  background-color: #004aad;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* ===== STEP 3: Main Container Styling ===== */
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== STEP 4: Form and Label Styling ===== */
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-top: 0.8rem;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== STEP 5: Section Headings & Fieldset ===== */
+
+section h2 {
+  color: #004aad;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid #0078d7;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+fieldset {
+  border: 2px solid #0078d7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-color: #f9fbff;
+  margin-bottom: 2rem;
+}
+
+legend {
+  font-weight: bold;
+  color: #004aad;
+  padding: 0 10px;
+}
+
+/* ===== STEP 6: Button Styling ===== */
+
+button {
+  background-color: #0078d7;
+  color: white;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #005fa3;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== STEP 7: Table Styling ===== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+thead {
+  background-color: #0078d7;
+  color: white;
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f4faff;
+}
+
+tbody tr:hover {
+  background-color: #eaf3ff;
+}
+
+td button {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
+}
+
+td button:hover {
+  background-color: #005fa3;
+}
+
+/* ===== STEP 8: Article Styling (for list.html) ===== */
+
+article {
+  border: 2px solid #0078d7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fbff;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+article:hover {
+  box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);
+  transform: translateY(-3px);
+}
+
+article h2 {
+  color: #004aad;
+  margin-bottom: 0.5rem;
+  border-bottom: none;
+  display: block;
+  padding-bottom: 0;
+}
+
+article p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+article a {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #0078d7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+article a:hover {
+  color: #005fa3;
+  text-decoration: underline;
+}
+
+/* ===== STEP 9: Discussion Forum Styling (for details.html) ===== */
+
+#discussion-forum {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #0078d7;
+}
+
+#comment-list {
+  margin-bottom: 2rem;
+}
+
+#comment-list article {
+  border-left: 4px solid #0078d7;
+  background-color: #f4faff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+#comment-list article p {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+#comment-list article footer {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* ===== STEP 10: Assignment Details Styling (for details.html) ===== */
+
+article > p:first-of-type {
+  font-weight: 600;
+  color: #0078d7;
+  font-size: 1.1rem;
+}
+
+article ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+article ul li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+article ul li::before {
+  content: "► ";
+  position: absolute;
+  left: 0;
+  color: #0078d7;
+}
+
+article ul li a {
+  color: #0078d7;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+article ul li a:hover {
+  color: #005fa3;
+  text-decoration: underline;
+}
