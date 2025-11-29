@@ -86,7 +86,7 @@ function renderAssignmentDetails(assignment) {
 function createCommentArticle(comment) {
   // ... your implementation here ...
   const article = document.createElement('article');
-  const p = document.createElemen('p');
+  const p = document.createElement('p');
   p.textContent = comment.text;
   const footer = document.createElement('footer');
   footer.textContent = "Posted by: " + comment.author;
