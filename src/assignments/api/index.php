@@ -690,15 +690,18 @@ try {
  */
 function sendResponse($data, $statusCode = 200) {
     // TODO: Set HTTP response code
-    
+    http_response_code($statusCode);
     
     // TODO: Ensure data is an array
-    
+    if (!is_array($data)) {
+        $data = ['result' => $data];
+    }
     
     // TODO: Echo JSON encoded data
-    
+    echo json_encode($data);
     
     // TODO: Exit to prevent further execution
+    exit();
     
 }
 
@@ -711,15 +714,16 @@ function sendResponse($data, $statusCode = 200) {
  */
 function sanitizeInput($data) {
     // TODO: Trim whitespace from beginning and end
-    
+    $data = trim($data);
     
     // TODO: Remove HTML and PHP tags
-    
+    $data = strip_tags($data);
     
     // TODO: Convert special characters to HTML entities
-    
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
     
     // TODO: Return the sanitized data
+    return $data;
     
 }
 
@@ -732,9 +736,10 @@ function sanitizeInput($data) {
  */
 function validateDate($date) {
     // TODO: Use DateTime::createFromFormat to validate
-    
+    $d = DateTime::createFromFormat('Y-m-d', $date);
     
     // TODO: Return true if valid, false otherwise
+    return $d && $d->format('Y-m-d') === $date;
     
 }
 
@@ -748,9 +753,10 @@ function validateDate($date) {
  */
 function validateAllowedValue($value, $allowedValues) {
     // TODO: Check if $value exists in $allowedValues array
-    
+    $isValid = in_array($value, $allowedValues);
     
     // TODO: Return the result
+    return $isValid;
     
 }
 
