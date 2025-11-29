@@ -7,7 +7,12 @@
   Use the provided IDs for the elements that require them.
   Focus on creating a clear and semantic HTML structure.
 -->
+
+
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -15,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Portal</title>
     <link rel="stylesheet" href="style.css">
-    <script src="manage_users.js" defer></script>
+    <script src="manage_users.js?v=999" defer></script>
 </head>
 
 <body>
@@ -31,6 +36,9 @@
                 <fieldset>
                     <legend>Password Update</legend>
 
+                    <label for="student-id-password">Student ID</label>
+                    <input type="text" id="student-id-password" placeholder="Enter your student ID" required><br>
+
                     <label for="current-password">Current Password</label>
                     <input type="password" id="current-password" required><br>
 
@@ -40,10 +48,10 @@
                     <label for="confirm-password">Confirm Password</label>
                     <input type="password" id="confirm-password" required><br>
 
-
                     <button type="submit" id="change">Update Password</button>
                 </fieldset>
             </form>
+
         </section>
 
         <!-- Section 2: Student Management -->
