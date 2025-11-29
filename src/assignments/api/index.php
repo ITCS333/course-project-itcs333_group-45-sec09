@@ -222,33 +222,58 @@ function getAssignmentById($db, $assignmentId) {
  */
 function createAssignment($db, $data) {
     // TODO: Validate required fields
-    
+    if (empty($data['title']) || empty($data['description']) || empty($data['due_date'])) {
+        sendResponse(['error' => 'Title, description, and due_date are required'], 400);
+    }
     
     // TODO: Sanitize input data
-    
+    $title = sanitizeInput($data['title']);
+    $description = sanitizeInput($data['description']);
+    $dueDate = $data['due_date'];
     
     // TODO: Validate due_date format
-    
+    if (!validateDate($dueDate)) {
+        sendResponse(['error' => 'Invalid date format. Use YYYY-MM-DD'], 400);
+    }
     
     // TODO: Generate a unique assignment ID
-    
+    $assignmentId = 'asg_' . time();
     
     // TODO: Handle the 'files' field
-    
+    $files = isset($data['files']) && is_array($data['files']) ? $data['files'] : [];
+    $filesJson = json_encode($files);
     
     // TODO: Prepare INSERT query
-    
+    $sql = "INSERT INTO assignments (id, title, description, due_date, files) 
+            VALUES (:id, :title, :description, :due_date, :files)";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind all parameters
-    
+    $stmt->bindValue(':id', $assignmentId);
+    $stmt->bindValue(':title', $title);
+    $stmt->bindValue(':description', $description);
+    $stmt->bindValue(':due_date', $dueDate);
+    $stmt->bindValue(':files', $filesJson);
     
     // TODO: Execute the statement
-    
+    $success = $stmt->execute();
     
     // TODO: Check if insert was successful
-    
+    if ($success) {
+        sendResponse([
+            'message' => 'Assignment created successfully',
+            'assignment' => [
+                'id' => $assignmentId,
+                'title' => $title,
+                'description' => $description,
+                'due_date' => $dueDate,
+                'files' => $files
+            ]
+        ], 201);
+    }
     
     // TODO: If insert failed, return 500 error
+    sendResponse(['error' => 'Failed to create assignment'], 500);
     
 }
 
