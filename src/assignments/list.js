@@ -15,7 +15,7 @@
 // TODO: Select the section for the assignment list ('#assignment-list-section').
 
 // --- Functions ---
-const assignmentList = document.getElementById('#assignment-list-section');
+const assignmentList = document.getElementById('assignment-list-section');
 /**
  * TODO: Implement the createAssignmentArticle function.
  * It takes one assignment object {id, title, dueDate, description}.
@@ -61,7 +61,7 @@ function createAssignmentArticle(assignment) {
 async function loadAssignments() {
   // ... your implementation here ...
   const response = await fetch('api/assignments.json');
-  const assignments = await response.join();
+  const assignments = await response.json();
  
   assignmentList.innerHTML = "";
 
