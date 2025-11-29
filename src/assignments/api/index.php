@@ -439,21 +439,25 @@ function deleteAssignment($db, $assignmentId) {
  */
 function getCommentsByAssignment($db, $assignmentId) {
     // TODO: Validate that $assignmentId is provided and not empty
-    
+    if (empty($assignmentId)) {
+        sendResponse(['error' => 'Assignment ID is required'], 400);
+    }
     
     // TODO: Prepare SQL query to select all comments for the assignment
-    
+    $sql = "SELECT * FROM comments WHERE assignment_id = :assignment_id ORDER BY created_at ASC";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind the :assignment_id parameter
-    
+    $stmt->bindValue(':assignment_id', $assignmentId);
     
     // TODO: Execute the statement
-    
+    $stmt->execute();
     
     // TODO: Fetch all results as associative array
-    
+    $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // TODO: Return success response with comments data
+    sendResponse(['comments' => $comments], 200);
     
 }
 
