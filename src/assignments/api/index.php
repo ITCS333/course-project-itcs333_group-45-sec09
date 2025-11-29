@@ -546,24 +546,37 @@ function createComment($db, $data) {
  */
 function deleteComment($db, $commentId) {
     // TODO: Validate that $commentId is provided and not empty
-    
+    if (empty($commentId)) {
+        sendResponse(['error' => 'Comment ID is required'], 400);
+    }
     
     // TODO: Check if comment exists
+    $checkSql = "SELECT id FROM comments WHERE id = :id";
+    $checkStmt = $db->prepare($checkSql);
+    $checkStmt->bindValue(':id', $commentId);
+    $checkStmt->execute();
     
+    if (!$checkStmt->fetch()) {
+        sendResponse(['error' => 'Comment not found'], 404);
+    }
     
     // TODO: Prepare DELETE query
-    
+    $sql = "DELETE FROM comments WHERE id = :id";
+    $stmt = $db->prepare($sql);
     
     // TODO: Bind the :id parameter
-    
+    $stmt->bindValue(':id', $commentId);
     
     // TODO: Execute the statement
-    
+    $success = $stmt->execute();
     
     // TODO: Check if delete was successful
-    
+    if ($success) {
+        sendResponse(['message' => 'Comment deleted successfully'], 200);
+    }
     
     // TODO: If delete failed, return 500 error
+    sendResponse(['error' => 'Failed to delete comment'], 500);
     
 }
 
