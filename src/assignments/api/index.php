@@ -40,12 +40,18 @@
 // ============================================================================
 
 // TODO: Set Content-Type header to application/json
-
+header('Content-Type: application/json');
 
 // TODO: Set CORS headers to allow cross-origin requests
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 
 // TODO: Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 
 
@@ -54,13 +60,20 @@
 // ============================================================================
 
 // TODO: Include the database connection class
-
+require_once 'AssignmentDB.php';
 
 // TODO: Create database connection
+try {
+    $database = new AssignmentDB();
+    $db = $database->connect();
 
 
 // TODO: Set PDO to throw exceptions on errors
-
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
+    exit();
+}
 
 
 // ============================================================================
