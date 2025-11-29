@@ -110,31 +110,57 @@ $resource = $_GET['resource'] ?? null;
  */
 function getAllAssignments($db) {
     // TODO: Start building the SQL query
-    
+    $sql = "SELECT * FROM assignments";
+    $params = [];
     
     // TODO: Check if 'search' query parameter exists in $_GET
-    
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $_GET['search'];
+        $sql .= " WHERE title LIKE :search OR description LIKE :search";
+        $params[':search'] = '%' . $search . '%';
+    }
     
     // TODO: Check if 'sort' and 'order' query parameters exist
+    $allowedSortFields = ['title', 'due_date', 'created_at'];
+    $allowedOrder = ['asc', 'desc'];
     
+    $sort = $_GET['sort'] ?? 'created_at';
+    $order = $_GET['order'] ?? 'asc';
+
+    if (validateAllowedValue($sort, $allowedSortFields) && 
+        validateAllowedValue($order, $allowedOrder)) {
+        $sql .= " ORDER BY $sort $order";
+    } else {
+        $sql .= " ORDER BY created_at asc";
+    }
     
     // TODO: Prepare the SQL statement using $db->prepare()
-    
+    $stmt = $db->prepare($sql);
+
     
     // TODO: Bind parameters if search is used
-    
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+    }
     
     // TODO: Execute the prepared statement
-    
+    $stmt->execute();
+
     
     // TODO: Fetch all results as associative array
-    
+    $assignments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     
     // TODO: For each assignment, decode the 'files' field from JSON to array
-    
+    foreach ($assignments as &$assignment) {
+        $assignment['files'] = json_decode($assignment['files'], true);
+    }
     
     // TODO: Return JSON response
-    
+    sendResponse(['assignments' => $assignments], 200);
+
 }
 
 
@@ -272,7 +298,6 @@ function updateAssignment($db, $data) {
     // TODO: If no rows affected, return appropriate message
     
 }
-
 
 /**
  * Function: Delete an assignment
