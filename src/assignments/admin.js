@@ -10,16 +10,16 @@
   
   3. Implement the TODOs below.
 */
-
+loadAndInitialize();
 // --- Global Data Store ---
 // This will hold the assignments loaded from the JSON file.
 let assignments = [];
 
 // --- Element Selections ---
 // TODO: Select the assignment form ('#assignment-form').
-const assignmentForm = document.getElementById('#assignment-form');
+const assignmentForm = document.getElementById('assignment-form');
 // TODO: Select the assignments table body ('#assignments-tbody').
-const assignmentsTableBody = document.getElementById('#assignments-tbody');
+const assignmentsTableBody = document.getElementById('assignments-tbody');
 
 // --- Functions ---
 
@@ -94,27 +94,45 @@ function renderTable() {
  * 5. Call `renderTable()` to refresh the list.
  * 6. Reset the form.
  */
+assignmentForm.addEventListener('submit',handleAddAssignment);
 function handleAddAssignment(event) {
   // ... your implementation here ...
+
   event.preventDefault();
 
-  const title = document.getElementById('assignment-title').value;
-  const description = document.getElementById('assignment-description').value;
-  const dueDate = document.getElementById('assignment-due-date').value;
-  const files = document.getElementById('assignment-files').value;
-
-  const newAssignment = {
-    id: `asg_${Date.now()}`,
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    files: files
-  }
-  assignments.push(newAssignment);
-
+  const assignment_title = document.getElementById('assignment-title').value;
+  const assignment_data = document.getElementById('assignment-due-date').value;
+  const assignment_description = document.getElementById('assignment-description').value;
+  
+  const new_Assignment = {
+    'id' : `asg_${Date.now()}`,
+    'title' : assignment_title,
+    'description' : assignment_description,
+    'dueDate' : assignment_data
+  };
+  assignments.push(new_Assignment);
   renderTable();
-
   assignmentForm.reset();
+
+  // event.preventDefault();
+
+  // const title = document.getElementById('assignment-title').value;
+  // const description = document.getElementById('assignment-description').value;
+  // const dueDate = document.getElementById('assignment-due-date').value;
+  // const files = document.getElementById('assignment-files').value;
+
+  // const newAssignment = {
+  //   id: `asg_${Date.now()}`,
+  //   title: title,
+  //   description: description,
+  //   dueDate: dueDate,
+  //   files: files
+  // }
+  // assignments.push(newAssignment);
+
+  // renderTable();
+
+  // assignmentForm.reset();
 
 
   }
@@ -132,12 +150,15 @@ function handleAddAssignment(event) {
  * with the matching ID (in-memory only).
  * 4. Call `renderTable()` to refresh the list.
  */
+assignmentsTableBody.addEventListener('click',handleTableClick);
 function handleTableClick(event) {
   // ... your implementation here ...
   if (event.target.classList.contains('delete-btn')){
     const assignmentId = event.target.getAttribute('data-id');
 
-    assignments = assignments.filter(assignment => assignment.id !== assignmentId);
+    assignments = assignments.filter(function(assignment){
+      return assignment.id !== assignmentId;
+    });
 
     renderTable();
 
@@ -154,17 +175,18 @@ function handleTableClick(event) {
  * 4. Add the 'submit' event listener to `assignmentForm` (calls `handleAddAssignment`).
  * 5. Add the 'click' event listener to `assignmentsTableBody` (calls `handleTableClick`).
  */
+
 async function loadAndInitialize() {
   // ... your implementation here ...
   const response = await fetch('api/assignments.json');
   const data = await response.json();
   
   assignments = data;
-
-  renderTable();
-
   assignmentForm.addEventListener('submit', handleAddAssignment);
   assignmentsTableBody.addEventListener('click', handleTableClick);
+
+  renderTable();
+  
 }
 
 // --- Initial Page Load ---
