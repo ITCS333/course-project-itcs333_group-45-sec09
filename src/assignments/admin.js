@@ -94,7 +94,6 @@ function renderTable() {
  * 5. Call `renderTable()` to refresh the list.
  * 6. Reset the form.
  */
-assignmentForm.addEventListener('submit',handleAddAssignment);
 function handleAddAssignment(event) {
   // ... your implementation here ...
 
@@ -113,28 +112,6 @@ function handleAddAssignment(event) {
   assignments.push(new_Assignment);
   renderTable();
   assignmentForm.reset();
-
-  // event.preventDefault();
-
-  // const title = document.getElementById('assignment-title').value;
-  // const description = document.getElementById('assignment-description').value;
-  // const dueDate = document.getElementById('assignment-due-date').value;
-  // const files = document.getElementById('assignment-files').value;
-
-  // const newAssignment = {
-  //   id: `asg_${Date.now()}`,
-  //   title: title,
-  //   description: description,
-  //   dueDate: dueDate,
-  //   files: files
-  // }
-  // assignments.push(newAssignment);
-
-  // renderTable();
-
-  // assignmentForm.reset();
-
-
   }
 
   
@@ -150,7 +127,6 @@ function handleAddAssignment(event) {
  * with the matching ID (in-memory only).
  * 4. Call `renderTable()` to refresh the list.
  */
-assignmentsTableBody.addEventListener('click',handleTableClick);
 function handleTableClick(event) {
   // ... your implementation here ...
   if (event.target.classList.contains('delete-btn')){
@@ -191,4 +167,3 @@ async function loadAndInitialize() {
 
 // --- Initial Page Load ---
 // Call the main async function to start the application.
-loadAndInitialize();
