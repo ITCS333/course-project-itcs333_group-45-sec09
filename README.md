@@ -18,5 +18,5 @@
 
 ## A link to your live, hosted application on Replit.
 
-[Click here to view the live project on Replit](https://replit.com/......)
+[Click here to view the live project on Replit](https://replit.com/@elias2005a/ITCS333-Course-Project?v=1)
 
