@@ -13,6 +13,7 @@
 
 // --- Element Selections ---
 // TODO: Select the section for the assignment list ('#assignment-list-section').
+loadAssignments();
 
 // --- Functions ---
 const assignmentList = document.getElementById('assignment-list-section');
@@ -73,4 +74,3 @@ async function loadAssignments() {
 }
 // --- Initial Page Load ---
 // Call the function to populate the page.
-loadAssignments();

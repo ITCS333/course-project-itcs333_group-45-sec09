@@ -16,6 +16,7 @@
 
   3. Implement the TODOs below.
 */
+initializePage();
 
 // --- Global Data Store ---
 // These will hold the data related to *this* assignment.
@@ -74,7 +75,7 @@ function renderAssignmentDetails(assignment) {
   a.textContent = file;
   li.appendChild(a);
   assignmentFilesList.appendChild(li);
-}
+  }
 
 }
 
