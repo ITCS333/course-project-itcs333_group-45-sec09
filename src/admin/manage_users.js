@@ -21,22 +21,29 @@ const passwordForm = document.getElementById("password-form");
 // ----------------------
 // RENDER ROW
 // ----------------------
-function createStudentRow(stu) {
-    return `
-        <tr>
-            <td>${stu.name}</td>
-            <td>${stu.student_id}</td>
-            <td>${stu.email}</td>
-            <td>
-                <button class="edit-btn" data-id="${stu.student_id}">Edit</button>
-                <button class="delete-btn" data-id="${stu.student_id}">Delete</button>
-            </td>
-        </tr>
-    `;
+function createStudentRow(student) {
+  const tr = document.createElement("tr");
+
+  tr.innerHTML = `
+    <td>${student.name}</td>
+    <td>${student.id}</td>
+    <td>${student.email}</td>
+    <td>
+      <button class="edit-btn" data-id="${student.id}">Edit</button>
+      <button class="delete-btn" data-id="${student.id}">Delete</button>
+    </td>
+  `;
+
+  return tr;
 }
 
-function renderTable(list) {
-    studentTableBody.innerHTML = list.map(createStudentRow).join("");
+
+function renderTable(studentArray) {
+  studentTableBody.textContent = "";
+
+  for (let i = 0; i < studentArray.length; i += 1) {
+    studentTableBody.appendChild(createStudentRow(studentArray[i]));
+  }
 }
 
 // ----------------------
