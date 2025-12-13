@@ -2,7 +2,7 @@
 /**
  * Course Resources API
  * 
- * This is a RESTful API that handles all CRUD operations for course resources 
+ * This is a  RESTful API that handles all CRUD operations for course resources 
  * and their associated comments/discussions.
  * It uses PDO to interact with a MySQL database.
  * 
