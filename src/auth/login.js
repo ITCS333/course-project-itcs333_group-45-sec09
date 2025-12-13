@@ -14,6 +14,36 @@ function displayMessage(msg, type) {
     messageContainer.className = type;
 }
 
+function isValidEmail(email) {
+  return /\S+@\S+\.\S+/.test(email);
+}
+
+function isValidPassword(password) {
+  return typeof password === "string" && password.length >= 8;
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!isValidEmail(email)) {
+    displayMessage("Invalid email format.", "error");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    displayMessage("Password must be at least 8 characters.", "error");
+    return;
+  }
+
+  displayMessage("Login successful!", "success");
+  emailInput.value = "";
+  passwordInput.value = "";
+}
+
+
 loginForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
