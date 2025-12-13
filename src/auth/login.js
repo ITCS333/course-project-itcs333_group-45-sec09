@@ -1,3 +1,7 @@
+/*
+    FINAL LOGIN.JS (WORKING WITH YOUR PROJECT STRUCTURE)
+*/
+
 const API_URL = "./api/index.php";
 
 const loginForm = document.getElementById("login-form");
@@ -11,14 +15,34 @@ function displayMessage(msg, type) {
 }
 
 function isValidEmail(email) {
-    return /\S+@\S+\.\S+/.test(email);
+  return /\S+@\S+\.\S+/.test(email);
 }
 
 function isValidPassword(password) {
-    return typeof password === "string" && password.length >= 8;
+  return typeof password === "string" && password.length >= 8;
 }
 
-/* ✅ REQUIRED BY AUTOGRADER */
+function handleLogin(event) {
+  event.preventDefault();
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!isValidEmail(email)) {
+    displayMessage("Invalid email format.", "error");
+    return;
+  }
+
+  if (!isValidPassword(password)) {
+    displayMessage("Password must be at least 8 characters.", "error");
+    return;
+  }
+
+  displayMessage("Login successful!", "success");
+  emailInput.value = "";
+  passwordInput.value = "";
+}
+
 function setupLoginForm() {
     loginForm.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -59,6 +83,5 @@ function setupLoginForm() {
     });
 }
 
-/* ✅ REQUIRED BY AUTOGRADER */
 setupLoginForm();
 
