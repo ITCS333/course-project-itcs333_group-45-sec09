@@ -36,6 +36,13 @@
  */
 
 // ============================================================================
+// SESSION INITIALIZATION
+// ============================================================================
+
+// TODO: Start the session
+session_start();
+
+// ============================================================================
 // HEADERS AND CORS CONFIGURATION
 // ============================================================================
 
@@ -758,6 +765,30 @@ function validateAllowedValue($value, $allowedValues) {
     // TODO: Return the result
     return $isValid;
     
+}
+
+
+/**
+ * Helper function to set session data
+ * 
+ * @param string $key - Session key
+ * @param mixed $value - Value to store
+ */
+function setSessionData($key, $value) {
+    // TODO: Store data in $_SESSION
+    $_SESSION[$key] = $value;
+}
+
+
+/**
+ * Helper function to get session data
+ * 
+ * @param string $key - Session key
+ * @return mixed - Session value or null if not set
+ */
+function getSessionData($key) {
+    // TODO: Retrieve data from $_SESSION
+    return $_SESSION[$key] ?? null;
 }
 
 ?>
