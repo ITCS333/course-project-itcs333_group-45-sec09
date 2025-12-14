@@ -77,9 +77,11 @@ try {
         ]
     ]);
 
-} catch (Exception $e) {
+} catch (PDOException $e) {
     echo json_encode([
         "success" => false,
-        "message" => "PHP ERROR: " . $e->getMessage()
+        "message" => "Database error: " . $e->getMessage()
     ]);
 }
+
+
