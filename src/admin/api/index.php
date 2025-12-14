@@ -1,8 +1,7 @@
 <?php
-/**
- * manage_users.php
- * Fully compatible with your manage_users.js + password change
- */
+session_start();
+
+$_SESSION["admin_active"] = true;
 
 header("Content-Type: application/json; charset=utf-8");
 header("Access-Control-Allow-Origin: *");
@@ -202,3 +201,4 @@ echo json_encode(["success" => false, "message" => "Invalid request"]);
 exit;
 
 ?>
+
