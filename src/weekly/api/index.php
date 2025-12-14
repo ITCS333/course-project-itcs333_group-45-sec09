@@ -32,6 +32,14 @@ $data = json_decode($requestBody, true);
 // Get resource type
 $resource = isset($_GET['resource']) ? $_GET['resource'] : 'weeks';
 
+// Initialize session data for tracking user activity
+if (!isset($_SESSION['user_activity'])) {
+    $_SESSION['user_activity'] = [];
+}
+
+// Store last access time in session
+$_SESSION['last_access'] = time();
+
 
 // ============================================================
 // WEEKS FUNCTIONS
@@ -41,6 +49,12 @@ function getAllWeeks($db) {
     $search = isset($_GET['search']) ? $_GET['search'] : '';
     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'start_date';
     $order = isset($_GET['order']) ? $_GET['order'] : 'asc';
+    
+    // Track user activity in session
+    $_SESSION['user_activity'][] = [
+        'action' => 'view_all_weeks',
+        'timestamp' => time()
+    ];
     
     // Validate sort field
     $allowedSorts = ['title', 'start_date', 'created_at'];
@@ -95,6 +109,13 @@ function getWeekById($db, $weekId) {
         sendError('Week ID is required', 400);
         return;
     }
+    
+    // Track in session
+    $_SESSION['user_activity'][] = [
+        'action' => 'view_week',
+        'week_id' => $weekId,
+        'timestamp' => time()
+    ];
     
     $sql = "SELECT week_id, title, start_date, description, links, created_at FROM weeks WHERE week_id = ?";
     
@@ -173,6 +194,13 @@ function createWeek($db, $data) {
         $stmt->bindParam(5, $links);
         
         if ($stmt->execute()) {
+            // Track in session
+            $_SESSION['user_activity'][] = [
+                'action' => 'create_week',
+                'week_id' => $weekId,
+                'timestamp' => time()
+            ];
+            
             sendResponse([
                 'success' => true,
                 'message' => 'Week created successfully',
@@ -263,6 +291,13 @@ function updateWeek($db, $data) {
         }
         
         if ($stmt->execute()) {
+            // Track in session
+            $_SESSION['user_activity'][] = [
+                'action' => 'update_week',
+                'week_id' => $weekId,
+                'timestamp' => time()
+            ];
+            
             // Return updated week
             getWeekById($db, $weekId);
         } else {
@@ -314,6 +349,13 @@ function deleteWeek($db, $weekId) {
         $stmt->bindParam(1, $weekId);
         
         if ($stmt->execute()) {
+            // Track in session
+            $_SESSION['user_activity'][] = [
+                'action' => 'delete_week',
+                'week_id' => $weekId,
+                'timestamp' => time()
+            ];
+            
             sendResponse([
                 'success' => true,
                 'message' => 'Week and associated comments deleted successfully'
@@ -337,6 +379,13 @@ function getCommentsByWeek($db, $weekId) {
         sendError('Week ID is required', 400);
         return;
     }
+    
+    // Track in session
+    $_SESSION['user_activity'][] = [
+        'action' => 'view_comments',
+        'week_id' => $weekId,
+        'timestamp' => time()
+    ];
     
     $sql = "SELECT id, week_id, author, text, created_at FROM comments WHERE week_id = ? ORDER BY created_at ASC";
     
@@ -400,6 +449,14 @@ function createComment($db, $data) {
         if ($stmt->execute()) {
             $commentId = $db->lastInsertId();
             
+            // Track in session
+            $_SESSION['user_activity'][] = [
+                'action' => 'create_comment',
+                'week_id' => $weekId,
+                'comment_id' => $commentId,
+                'timestamp' => time()
+            ];
+            
             sendResponse([
                 'success' => true,
                 'message' => 'Comment created successfully',
@@ -449,6 +506,13 @@ function deleteComment($db, $commentId) {
         $stmt->bindParam(1, $commentId);
         
         if ($stmt->execute()) {
+            // Track in session
+            $_SESSION['user_activity'][] = [
+                'action' => 'delete_comment',
+                'comment_id' => $commentId,
+                'timestamp' => time()
+            ];
+            
             sendResponse([
                 'success' => true,
                 'message' => 'Comment deleted successfully'
