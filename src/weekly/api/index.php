@@ -1,13 +1,9 @@
 <?php
-/**
- * Weekly Course Breakdown API
- * RESTful API for managing weekly course content and comments
- */
 
-// ============================================================================
-// SETUP AND CONFIGURATION
-// ============================================================================
+// Start session at the very beginning
+session_start();
 
+// Set response headers
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
@@ -22,23 +18,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Include database connection
 require_once '../common/Database.php';
 
-// Get database connection
+// Initialize database
 $database = new Database();
 $db = $database->getConnection();
 
 // Get request method
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Get request body for POST and PUT
+// Get request body
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 
-// Get resource parameter
+// Get resource type
 $resource = isset($_GET['resource']) ? $_GET['resource'] : 'weeks';
 
-// ============================================================================
-// WEEKS CRUD OPERATIONS
-// ============================================================================
+
+// ============================================================
+// WEEKS FUNCTIONS
+// ============================================================
 
 function getAllWeeks($db) {
     $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -57,7 +54,7 @@ function getAllWeeks($db) {
         $order = 'asc';
     }
     
-    // Build query
+    // Build SQL query
     $sql = "SELECT week_id, title, start_date, description, links, created_at FROM weeks";
     
     if (!empty($search)) {
@@ -78,7 +75,7 @@ function getAllWeeks($db) {
         $stmt->execute();
         $weeks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        // Decode links JSON
+        // Decode JSON links
         foreach ($weeks as &$week) {
             $week['links'] = json_decode($week['links'], true);
         }
@@ -131,7 +128,7 @@ function createWeek($db, $data) {
         return;
     }
     
-    // Sanitize input
+    // Sanitize inputs
     $weekId = sanitizeInput($data['week_id']);
     $title = sanitizeInput($data['title']);
     $startDate = sanitizeInput($data['start_date']);
@@ -143,7 +140,7 @@ function createWeek($db, $data) {
         return;
     }
     
-    // Check for duplicate week_id
+    // Check if week_id already exists
     $checkSql = "SELECT week_id FROM weeks WHERE week_id = ?";
     try {
         $checkStmt = $db->prepare($checkSql);
@@ -159,12 +156,12 @@ function createWeek($db, $data) {
         return;
     }
     
-    // Handle links
+    // Process links
     $links = isset($data['links']) && is_array($data['links']) 
         ? json_encode($data['links']) 
         : json_encode([]);
     
-    // Insert week
+    // Insert new week
     $sql = "INSERT INTO weeks (week_id, title, start_date, description, links) VALUES (?, ?, ?, ?, ?)";
     
     try {
@@ -220,7 +217,7 @@ function updateWeek($db, $data) {
         return;
     }
     
-    // Build dynamic UPDATE query
+    // Build dynamic update query
     $setClauses = [];
     $values = [];
     
@@ -266,7 +263,7 @@ function updateWeek($db, $data) {
         }
         
         if ($stmt->execute()) {
-            // Fetch updated week
+            // Return updated week
             getWeekById($db, $weekId);
         } else {
             sendError('Failed to update week', 500);
@@ -330,9 +327,10 @@ function deleteWeek($db, $weekId) {
     }
 }
 
-// ============================================================================
-// COMMENTS CRUD OPERATIONS
-// ============================================================================
+
+// ============================================================
+// COMMENTS FUNCTIONS
+// ============================================================
 
 function getCommentsByWeek($db, $weekId) {
     if (empty($weekId)) {
@@ -464,9 +462,10 @@ function deleteComment($db, $commentId) {
     }
 }
 
-// ============================================================================
-// MAIN REQUEST ROUTER
-// ============================================================================
+
+// ============================================================
+// ROUTING
+// ============================================================
 
 try {
     if ($resource === 'weeks') {
@@ -513,9 +512,10 @@ try {
     sendError('An error occurred', 500);
 }
 
-// ============================================================================
+
+// ============================================================
 // HELPER FUNCTIONS
-// ============================================================================
+// ============================================================
 
 function sendResponse($data, $statusCode = 200) {
     http_response_code($statusCode);
